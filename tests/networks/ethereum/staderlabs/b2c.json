@@ -1,0 +1,17 @@
+{
+  "chainId": 1,
+  "contracts": [
+    {
+      "address": "0xf03a7eb46d01d9ecaa104558c732cf82f6b6b645",
+      "contractName": "MaticX",
+      "selectors": {
+        "0xea99c2a6": {
+          "erc20OfInterest": [],
+          "method": "submit",
+          "plugin": "Staderlabs"
+        }
+      }
+    }
+  ],
+  "name": "Staderlabs"
+}

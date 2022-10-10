@@ -1,25 +1,26 @@
 #include "boilerplate_plugin.h"
 
-// EDIT THIS: You need to adapt / remove the static functions (set_send_ui, set_receive_ui ...) to
+// EDIT THIS: You need to adapt / remove the static functions (set_stake_ui, set_receive_ui ...) to
 // match what you wish to display.
 
 // Set UI for the "Send" screen.
 // EDIT THIS: Adapt / remove this function to your needs.
-static void set_send_ui(ethQueryContractUI_t *msg) {
-    strlcpy(msg->title, "Send", msg->titleLength);
+static void set_stake_ui(ethQueryContractUI_t *msg , const context_t *context) {
+    strlcpy(msg->title, "Stake", msg->titleLength);
 
-    const uint8_t *eth_amount = msg->pluginSharedRO->txContent->value.value;
-    uint8_t eth_amount_size = msg->pluginSharedRO->txContent->value.length;
+    // const uint8_t *eth_amount = msg->pluginSharedRO->txContent->value.value;
+    // uint8_t eth_amount_size = msg->pluginSharedRO->txContent->value.length;
 
     // Converts the uint256 number located in `eth_amount` to its string representation and
     // copies this to `msg->msg`.
-    amountToString(eth_amount, eth_amount_size, WEI_TO_ETHER, "ETH ", msg->msg, msg->msgLength);
+    amountToString(context->amount_received,
+                   sizeof(context->amount_received), WEI_TO_ETHER, "MATIC ", msg->msg, msg->msgLength);
 }
 
 // Set UI for "Receive" screen.
 // EDIT THIS: Adapt / remove this function to your needs.
 static void set_receive_ui(ethQueryContractUI_t *msg, const context_t *context) {
-    strlcpy(msg->title, "Receive Min.", msg->titleLength);
+    strlcpy(msg->title, "Stake", msg->titleLength);
 
     uint8_t decimals = context->decimals;
     const char *ticker = context->ticker;
@@ -76,7 +77,7 @@ void handle_query_contract_ui(void *parameters) {
     // EDIT THIS: Adapt the cases for the screens you'd like to display.
     switch (msg->screenIndex) {
         case 0:
-            set_send_ui(msg);
+            set_stake_ui(msg, context);
             break;
         case 1:
             set_receive_ui(msg, context);

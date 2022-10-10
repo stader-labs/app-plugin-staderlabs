@@ -1,7 +1,7 @@
 #include "boilerplate_plugin.h"
 
 // EDIT THIS: Remove this function and write your own handlers!
-static void handle_swap_exact_eth_for_tokens(ethPluginProvideParameter_t *msg, context_t *context) {
+static void handle_eth_maticx_submit(ethPluginProvideParameter_t *msg, context_t *context) {
     if (context->go_to_offset) {
         if (msg->parameterOffset != context->offset + SELECTOR_SIZE) {
             return;
@@ -9,11 +9,11 @@ static void handle_swap_exact_eth_for_tokens(ethPluginProvideParameter_t *msg, c
         context->go_to_offset = false;
     }
     switch (context->next_param) {
-        case MIN_AMOUNT_RECEIVED:  // amountOutMin
+        case STAKE_AMOUNT:  
             copy_parameter(context->amount_received,
                            msg->parameter,
                            sizeof(context->amount_received));
-            context->next_param = PATH_OFFSET;
+            context->next_param = UNEXPECTED_PARAMETER;
             break;
         case PATH_OFFSET:  // path
             context->offset = U2BE(msg->parameter, PARAMETER_LENGTH - 2);
@@ -56,8 +56,8 @@ void handle_provide_parameter(void *parameters) {
 
     // EDIT THIS: adapt the cases and the names of the functions.
     switch (context->selectorIndex) {
-        case SWAP_EXACT_ETH_FOR_TOKENS:
-            handle_swap_exact_eth_for_tokens(msg, context);
+        case ETH_MATICX_SUBMIT:
+            handle_eth_maticx_submit(msg, context);
             break;
         case BOILERPLATE_DUMMY_2:
             break;
