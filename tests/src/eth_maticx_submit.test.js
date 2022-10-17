@@ -11,9 +11,7 @@ import {
 import { ethers } from "ethers";
 import { parseEther, parseUnits } from "ethers/lib/utils";
 
-// EDIT THIS: Replace with your contract address
 const contractAddr = "0xf03a7eb46d01d9ecaa104558c732cf82f6b6b645";
-// EDIT THIS: Replace `boilerplate` with your plugin name
 const pluginName = "staderlabs";
 const testNetwork = "ethereum";
 const abi_path =
@@ -28,12 +26,12 @@ nano_models.forEach(function (model) {
     zemu(model, async (sim, eth) => {
       // The rawTx of the tx up above is accessible through: https://etherscan.io/getRawTx?tx=0xb27a69cd3190ad0712da39f6b809ecc019ecbc319d3c17169853270226d18a8a
       const serializedTx = txFromEtherscan(
-        "0x02f892018204c384185c910a85013cdfa3468307229c94f03a7eb46d01d9ecaa104558c732cf82f6b6b64580a4ea99c2a6000000000000000000000000000000000000000000000a2a76f5940351bc0000c080a018d07ad019ef3d3b96d9a7329be4678305062dcaed5cf611bd4399de2d0e7401a03b41ac4be4188877a53efe0947e814bc3b3d60fa7bec8310a838fd5a80ee783b"
+        "0x02f890012b8459682f008501e45cb83d8307229094f03a7eb46d01d9ecaa104558c732cf82f6b6b64580a4ea99c2a60000000000000000000000000000000000000000000000481591030b2a830000c080a059adbe59fe76966e72c711b1487063246f5997278af9f2c7924aa49a23a50aaaa03a9c651f564666a26faa3f8ab9235bfc4d9d62a804075944d314a105e2519a30"
       );
 
       const tx = eth.signTransaction("44'/60'/0'/0", serializedTx);
 
-      const right_clicks = model.letter === "S" ? 7 : 5;
+      const right_clicks = model.letter === "S" ? 5 : 4;
 
       // Wait for the application to actually load and parse the transaction
       await waitForAppScreen(sim);

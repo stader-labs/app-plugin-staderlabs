@@ -1,4 +1,4 @@
-#include "boilerplate_plugin.h"
+#include "staderlabs_plugin.h"
 
 static int find_selector(uint32_t selector, const uint32_t *selectors, size_t n, selector_t *out) {
     for (selector_t i = 0; i < n; i++) {
@@ -47,9 +47,6 @@ void handle_init_contract(void *parameters) {
     switch (context->selectorIndex) {
         case ETH_MATICX_SUBMIT:
             context->next_param = STAKE_AMOUNT;
-            break;
-        case BOILERPLATE_DUMMY_2:
-            context->next_param = TOKEN_RECEIVED;
             break;
         // Keep this
         default:

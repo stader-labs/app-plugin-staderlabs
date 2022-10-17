@@ -22,19 +22,19 @@
 #include "os.h"
 #include "cx.h"
 
-#include "boilerplate_plugin.h"
+#include "staderlabs_plugin.h"
 
 // List of selectors supported by this plugin.
-// EDIT THIS: Adapt the variable names and change the `0x` values to match your selectors.
+// Network: Ethereum
+// Contract: MaticX
+// Method: function submit(uint256 _amount)
+// Selector: 0xea99c2a6
 static const uint32_t ETH_MATICX_SUBMIT_SELECTOR = 0xea99c2a6;
-static const uint32_t BOILERPLATE_DUMMY_SELECTOR_2 = 0x13374242;
 
-// Array of all the different boilerplate selectors. Make sure this follows the same order as the
-// enum defined in `boilerplate_plugin.h`
-// EDIT THIS: Use the names of the array declared above.
+// Array of all the different staderlabs selectors. Make sure this follows the same order as the
+// enum defined in `staderlabs_plugin.h`
 const uint32_t STADERLABS_SELECTORS[NUM_SELECTORS] = {
     ETH_MATICX_SUBMIT_SELECTOR,
-    BOILERPLATE_DUMMY_SELECTOR_2,
 };
 
 // Function to dispatch calls from the ethereum app.
