@@ -1,18 +1,38 @@
 #include "staderlabs_plugin.h"
 
+// Copy amount sent parameter to amount_received
+static void handle_amount_received(const ethPluginProvideParameter_t *msg, context_t *context) {
+    copy_parameter(context->amount_received, msg->parameter, sizeof(context->amount_received));
+}
+
+static void handle_unsupported_param(ethPluginProvideParameter_t *msg, const context_t *context) {
+    PRINTF("Param not supported: %d\n", context->next_param);
+    msg->result = ETH_PLUGIN_RESULT_ERROR;
+}
+
 // EDIT THIS: Remove this function and write your own handlers!
-static void handle_eth_maticx_submit(ethPluginProvideParameter_t *msg, context_t *context) {
+static void handle_stake(ethPluginProvideParameter_t *msg, context_t *context) {
     switch (context->next_param) {
-        case STAKE_AMOUNT:  
-            copy_parameter(context->amount_received,
-                           msg->parameter,
-                           sizeof(context->amount_received));
+        case STAKE_AMOUNT:
+            handle_amount_received(msg, context);
             context->next_param = UNEXPECTED_PARAMETER;
             break;
         // Keep this
         default:
-            PRINTF("Param not supported: %d\n", context->next_param);
-            msg->result = ETH_PLUGIN_RESULT_ERROR;
+            handle_unsupported_param(msg, context);
+            break;
+    }
+}
+
+static void handle_unstake(ethPluginProvideParameter_t *msg, context_t *context) {
+    switch (context->next_param) {
+        case UNSTAKE_AMOUNT:
+            handle_amount_received(msg, context);
+            context->next_param = UNEXPECTED_PARAMETER;
+            break;
+        // Keep this
+        default:
+            handle_unsupported_param(msg, context);
             break;
     }
 }
@@ -33,7 +53,10 @@ void handle_provide_parameter(void *parameters) {
     // EDIT THIS: adapt the cases and the names of the functions.
     switch (context->selectorIndex) {
         case ETH_MATICX_SUBMIT:
-            handle_eth_maticx_submit(msg, context);
+            handle_stake(msg, context);
+            break;
+        case ETH_MATICX_REQUEST_WITHDRAW:
+            handle_unstake(msg, context);
             break;
         default:
             PRINTF("Selector Index not supported: %d\n", context->selectorIndex);

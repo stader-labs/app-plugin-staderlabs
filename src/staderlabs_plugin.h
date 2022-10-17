@@ -5,20 +5,19 @@
 #include <string.h>
 
 // Number of selectors defined in this plugin. Should match the enum `selector_t`.
-#define NUM_SELECTORS 1
+#define NUM_SELECTORS 2
 
 // Name of the plugin.
 #define PLUGIN_NAME "Staderlabs"
 
 // Enumeration of the different selectors possible.
 // Should follow the exact same order as the array declared in main.c
-typedef enum {
-    ETH_MATICX_SUBMIT = 0,
-} selector_t;
+typedef enum { ETH_MATICX_SUBMIT = 0, ETH_MATICX_REQUEST_WITHDRAW } selector_t;
 
 // Enumeration used to parse the smart contract data.
 typedef enum {
     STAKE_AMOUNT = 0,
+    UNSTAKE_AMOUNT,
     UNEXPECTED_PARAMETER,
 } parameter;
 
@@ -28,10 +27,11 @@ extern const uint32_t STADERLABS_SELECTORS[NUM_SELECTORS];
 typedef struct context_t {
     // For display.
     uint8_t amount_received[INT256_LENGTH];
+    char *ticker;
 
     // For parsing data.
     uint8_t next_param;  // Set to be the next param we expect to parse.
-    
+
     // For both parsing and display.
     selector_t selectorIndex;
 } context_t;

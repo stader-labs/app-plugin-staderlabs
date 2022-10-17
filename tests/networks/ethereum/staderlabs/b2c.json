@@ -9,6 +9,11 @@
           "erc20OfInterest": [],
           "method": "submit",
           "plugin": "Staderlabs"
+        },
+        "0x745400c9": {
+          "erc20OfInterest": [],
+          "method": "requestWithdraw",
+          "plugin": "Staderlabs"
         }
       }
     }

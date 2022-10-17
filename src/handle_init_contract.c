@@ -47,6 +47,12 @@ void handle_init_contract(void *parameters) {
     switch (context->selectorIndex) {
         case ETH_MATICX_SUBMIT:
             context->next_param = STAKE_AMOUNT;
+            context->ticker = "MATIC ";
+            break;
+
+        case ETH_MATICX_REQUEST_WITHDRAW:
+            context->next_param = UNSTAKE_AMOUNT;
+            context->ticker = "MATICX ";
             break;
         // Keep this
         default:
