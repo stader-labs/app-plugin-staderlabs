@@ -2,6 +2,7 @@ import Zemu, { DEFAULT_START_OPTIONS, DeviceModel } from "@zondax/zemu";
 import Eth from "@ledgerhq/hw-app-eth";
 import { generate_plugin_config } from "./generate_plugin_config";
 import { parseEther, parseUnits, RLP } from "ethers/lib/utils";
+import { ethers } from "ethers";
 
 const transactionUploadDelay = 60000;
 
@@ -60,7 +61,7 @@ let genericTx = {
   nonce: Number(0),
   gasLimit: Number(21000),
   gasPrice: parseUnits("1", "gwei"),
-  value: parseEther("1"),
+  value: parseEther("1.56"),
   chainId: 1,
   to: RANDOM_ADDRESS,
   data: null,
@@ -97,7 +98,7 @@ function txFromEtherscan(rawTx) {
   return txType + encoded;
 }
 
-function zemu(device, func) {
+function zemu(device, func, signed = false, testNetwork = "ethereum") {
   return async () => {
     jest.setTimeout(TIMEOUT);
     let elf_path;
@@ -112,7 +113,7 @@ function zemu(device, func) {
       const eth = new Eth(transport);
       eth.setLoadConfig({
         baseURL: null,
-        extraPlugins: staderlabsJSON,
+        extraPlugins: generate_plugin_config(testNetwork),
       });
       await func(sim, eth);
     } finally {
@@ -121,10 +122,24 @@ function zemu(device, func) {
   };
 }
 
+function serializeTx(contractAddr, inputData, chainId) {
+  // Get the generic transaction template
+  let unsignedTx = genericTx;
+  //adapt to the appropriate network
+  unsignedTx.chainId = chainId;
+  // Modify `to` to make it interact with the contract
+  unsignedTx.to = contractAddr;
+  // Modify the attached data
+  unsignedTx.data = inputData;
+  // Create serializedTx and remove the "0x" prefix
+  return ethers.utils.serializeTransaction(unsignedTx).slice(2);
+}
+
 module.exports = {
   zemu,
   waitForAppScreen,
   genericTx,
+  serializeTx,
   nano_models,
   SPECULOS_ADDRESS,
   RANDOM_ADDRESS,

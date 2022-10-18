@@ -55,11 +55,16 @@ void handle_provide_parameter(void *parameters) {
         case ETH_MATICX_SUBMIT:
             handle_stake(msg, context);
             break;
+
         case ETH_MATICX_REQUEST_WITHDRAW:
             handle_unstake(msg, context);
             break;
+
         case ETH_MATICX_CLAIM_WITHDRAWAL:
-            break;
+        case POLYGON_CHILDPOOL_SWAP_MATIC_FOR_MATICX_VIA_INSTANT_POOL:
+            context->next_param = UNEXPECTED_PARAMETER;
+            return;
+
         default:
             PRINTF("Selector Index not supported: %d\n", context->selectorIndex);
             msg->result = ETH_PLUGIN_RESULT_ERROR;

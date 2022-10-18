@@ -1,5 +1,21 @@
 #include "staderlabs_plugin.h"
 
+static void set_native_token_stake_ui(ethQueryContractUI_t *msg, const context_t *context) {
+    strlcpy(msg->title, "Stake", msg->titleLength);
+
+    const uint8_t *native_token_amount = msg->pluginSharedRO->txContent->value.value;
+    uint8_t native_token_amount_size = msg->pluginSharedRO->txContent->value.length;
+
+    // Converts the uint256 number located in `native_token_amount` to its string representation and
+    // copies this to `msg->msg`.
+    amountToString(native_token_amount,
+                   native_token_amount_size,
+                   WEI_TO_ETHER,
+                   context->ticker,
+                   msg->msg,
+                   msg->msgLength);
+}
+
 static void set_stake_ui(ethQueryContractUI_t *msg, const context_t *context) {
     strlcpy(msg->title, "Stake", msg->titleLength);
 
@@ -52,6 +68,10 @@ void handle_query_contract_ui(void *parameters) {
 
             // case ETH_MATICX_CLAIM_WITHDRAWAL:
             //     break;
+
+        case POLYGON_CHILDPOOL_SWAP_MATIC_FOR_MATICX_VIA_INSTANT_POOL:
+            set_native_token_stake_ui(msg, context);
+            break;
 
         default:
             PRINTF("Selector index: %d not supported\n", context->selectorIndex);

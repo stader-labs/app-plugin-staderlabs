@@ -14,6 +14,7 @@ void handle_query_contract_id(void *parameters) {
     // EDIT THIS: Adapt the cases by modifying the strings you pass to `strlcpy`.
     switch (context->selectorIndex) {
         case ETH_MATICX_SUBMIT:
+        case POLYGON_CHILDPOOL_SWAP_MATIC_FOR_MATICX_VIA_INSTANT_POOL:
             msgVersion = "Stake";
             break;
 

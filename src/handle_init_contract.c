@@ -60,6 +60,11 @@ void handle_init_contract(void *parameters) {
             context->ticker = NULL;
             break;
 
+        case POLYGON_CHILDPOOL_SWAP_MATIC_FOR_MATICX_VIA_INSTANT_POOL:
+            context->next_param = UNEXPECTED_PARAMETER;
+            context->ticker = "MATIC ";
+            break;
+
         // Keep this
         default:
             PRINTF("Missing selectorIndex: %d\n", context->selectorIndex);
