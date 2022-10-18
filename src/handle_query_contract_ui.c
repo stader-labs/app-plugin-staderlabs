@@ -63,6 +63,7 @@ void handle_query_contract_ui(void *parameters) {
             break;
 
         case ETH_MATICX_REQUEST_WITHDRAW:
+        case POLYGON_CHILDPOOL_REQUEST_MATICX_SWAP:
             set_unstake_ui(msg, context);
             break;
 

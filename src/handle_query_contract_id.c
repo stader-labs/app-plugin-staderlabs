@@ -19,6 +19,7 @@ void handle_query_contract_id(void *parameters) {
             break;
 
         case ETH_MATICX_REQUEST_WITHDRAW:
+        case POLYGON_CHILDPOOL_REQUEST_MATICX_SWAP:
             msgVersion = "Unstake";
             break;
 

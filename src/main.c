@@ -51,6 +51,12 @@ static const uint32_t ETH_MATICX_CLAIM_WITHDRAWAL_SELECTOR = 0xf8444436;
 static const uint32_t POLYGON_CHILDPOOL_SWAP_MATIC_FOR_MATICX_VIA_INSTANT_POOL_SELECTOR =
     0xc78cf1a0;
 
+// Network: Polygon
+// Contract: ChildPool
+// Method: function requestMaticXSwap(uint256 _amount)
+// Selector: 0x48eaf6d6
+static const uint32_t POLYGON_CHILDPOOL_REQUEST_MATICX_SWAP_SELECTOR = 0x48eaf6d6;
+
 // Array of all the different staderlabs selectors. Make sure this follows the same order as the
 // enum defined in `staderlabs_plugin.h`
 const uint32_t STADERLABS_SELECTORS[NUM_SELECTORS] = {
@@ -58,6 +64,7 @@ const uint32_t STADERLABS_SELECTORS[NUM_SELECTORS] = {
     ETH_MATICX_REQUEST_WITHDRAW_SELECTOR,
     ETH_MATICX_CLAIM_WITHDRAWAL_SELECTOR,
     POLYGON_CHILDPOOL_SWAP_MATIC_FOR_MATICX_VIA_INSTANT_POOL_SELECTOR,
+    POLYGON_CHILDPOOL_REQUEST_MATICX_SWAP_SELECTOR,
 };
 
 // Function to dispatch calls from the ethereum app.

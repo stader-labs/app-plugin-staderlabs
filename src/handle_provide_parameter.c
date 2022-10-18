@@ -57,6 +57,7 @@ void handle_provide_parameter(void *parameters) {
             break;
 
         case ETH_MATICX_REQUEST_WITHDRAW:
+        case POLYGON_CHILDPOOL_REQUEST_MATICX_SWAP:
             handle_unstake(msg, context);
             break;
 

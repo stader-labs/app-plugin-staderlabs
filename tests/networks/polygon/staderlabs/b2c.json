@@ -9,6 +9,11 @@
           "erc20OfInterest": [],
           "method": "swapMaticForMaticXViaInstantPool",
           "plugin": "Staderlabs"
+        },
+        "0x48eaf6d6": {
+          "erc20OfInterest": [],
+          "method": "requestMaticXSwap",
+          "plugin": "Staderlabs"
         }
       }
     }
