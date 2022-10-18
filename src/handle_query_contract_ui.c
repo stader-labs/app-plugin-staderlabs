@@ -50,6 +50,9 @@ void handle_query_contract_ui(void *parameters) {
             set_unstake_ui(msg, context);
             break;
 
+            // case ETH_MATICX_CLAIM_WITHDRAWAL:
+            //     break;
+
         default:
             PRINTF("Selector index: %d not supported\n", context->selectorIndex);
             msg->result = ETH_PLUGIN_RESULT_ERROR;

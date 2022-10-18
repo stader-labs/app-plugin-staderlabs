@@ -21,6 +21,10 @@ void handle_query_contract_id(void *parameters) {
             msgVersion = "Unstake";
             break;
 
+        case ETH_MATICX_CLAIM_WITHDRAWAL:
+            msgVersion = "Claim";
+            break;
+
         default:
             PRINTF("Selector index: %d not supported\n", context->selectorIndex);
             msg->result = ETH_PLUGIN_RESULT_ERROR;

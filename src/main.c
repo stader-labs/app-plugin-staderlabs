@@ -38,11 +38,18 @@ static const uint32_t ETH_MATICX_SUBMIT_SELECTOR = 0xea99c2a6;
 // Selector: 0x745400c9
 static const uint32_t ETH_MATICX_REQUEST_WITHDRAW_SELECTOR = 0x745400c9;
 
+// Network: Ethereum
+// Contract: MaticX
+// Method: function claimWithdrawal(uint256 _idx)
+// Selector: 0xf8444436
+static const uint32_t ETH_MATICX_CLAIM_WITHDRAWAL_SELECTOR = 0xf8444436;
+
 // Array of all the different staderlabs selectors. Make sure this follows the same order as the
 // enum defined in `staderlabs_plugin.h`
 const uint32_t STADERLABS_SELECTORS[NUM_SELECTORS] = {
     ETH_MATICX_SUBMIT_SELECTOR,
     ETH_MATICX_REQUEST_WITHDRAW_SELECTOR,
+    ETH_MATICX_CLAIM_WITHDRAWAL_SELECTOR,
 };
 
 // Function to dispatch calls from the ethereum app.

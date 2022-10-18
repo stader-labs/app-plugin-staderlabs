@@ -54,6 +54,12 @@ void handle_init_contract(void *parameters) {
             context->next_param = UNSTAKE_AMOUNT;
             context->ticker = "MATICX ";
             break;
+
+        case ETH_MATICX_CLAIM_WITHDRAWAL:
+            context->next_param = UNEXPECTED_PARAMETER;
+            context->ticker = NULL;
+            break;
+
         // Keep this
         default:
             PRINTF("Missing selectorIndex: %d\n", context->selectorIndex);

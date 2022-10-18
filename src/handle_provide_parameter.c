@@ -58,6 +58,8 @@ void handle_provide_parameter(void *parameters) {
         case ETH_MATICX_REQUEST_WITHDRAW:
             handle_unstake(msg, context);
             break;
+        case ETH_MATICX_CLAIM_WITHDRAWAL:
+            break;
         default:
             PRINTF("Selector Index not supported: %d\n", context->selectorIndex);
             msg->result = ETH_PLUGIN_RESULT_ERROR;

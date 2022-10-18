@@ -14,6 +14,11 @@
           "erc20OfInterest": [],
           "method": "requestWithdraw",
           "plugin": "Staderlabs"
+        },
+        "0xf8444436": {
+          "erc20OfInterest": [],
+          "method": "claimWithdrawal",
+          "plugin": "Staderlabs"
         }
       }
     }
