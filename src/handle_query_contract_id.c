@@ -24,6 +24,7 @@ void handle_query_contract_id(void *parameters) {
             break;
 
         case ETH_MATICX_CLAIM_WITHDRAWAL:
+        case POLYGON_CHILDPOOL_CLAIM_MATICX_SWAP:
             msgVersion = "Claim";
             break;
 

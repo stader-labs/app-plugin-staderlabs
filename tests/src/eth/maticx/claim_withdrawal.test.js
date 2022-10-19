@@ -5,14 +5,11 @@ import {
   zemu,
   nano_models,
   txFromEtherscan,
-} from "../test.fixture";
+} from "../../test.fixture";
 
 const contractAddr = "0xf03a7eb46d01d9ecaa104558c732cf82f6b6b645";
 const pluginName = "staderlabs";
 const testNetwork = "ethereum";
-const abi_path =
-  `../networks/${testNetwork}/${pluginName}/abis/` + contractAddr + ".json";
-const abi = require(abi_path);
 
 // Test from replayed transaction: https://etherscan.io/tx/0xf3c639002557eafa1560159010093927560ebbb351720c279be67bd3c480d103
 nano_models.forEach(function (model) {
@@ -26,7 +23,7 @@ nano_models.forEach(function (model) {
 
       const tx = eth.signTransaction("44'/60'/0'/0", serializedTx);
 
-      const right_clicks = model.letter === "S" ? 5 : 4;
+      const right_clicks = model.letter === "S" ? 6 : 4;
 
       // Wait for the application to actually load and parse the transaction
       await waitForAppScreen(sim);

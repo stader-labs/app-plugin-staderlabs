@@ -38,6 +38,11 @@ static void set_unstake_ui(ethQueryContractUI_t *msg, const context_t *context) 
                    msg->msgLength);
 }
 
+static void set_claim_ui(ethQueryContractUI_t *msg, const context_t *context) {
+    strlcpy(msg->title, "Claim", msg->titleLength);
+    strlcpy(msg->msg, context->ticker, msg->msgLength);
+}
+
 void handle_query_contract_ui(void *parameters) {
     ethQueryContractUI_t *msg = (ethQueryContractUI_t *) parameters;
     context_t *context = (context_t *) msg->pluginContext;
@@ -67,8 +72,10 @@ void handle_query_contract_ui(void *parameters) {
             set_unstake_ui(msg, context);
             break;
 
-            // case ETH_MATICX_CLAIM_WITHDRAWAL:
-            //     break;
+        case ETH_MATICX_CLAIM_WITHDRAWAL:
+        case POLYGON_CHILDPOOL_CLAIM_MATICX_SWAP:
+            set_claim_ui(msg, context);
+            break;
 
         case POLYGON_CHILDPOOL_SWAP_MATIC_FOR_MATICX_VIA_INSTANT_POOL:
             set_native_token_stake_ui(msg, context);

@@ -5,7 +5,6 @@ void handle_finalize(void *parameters) {
     context_t *context = (context_t *) msg->pluginContext;
 
     msg->uiType = ETH_UI_TYPE_GENERIC;
-    msg->numScreens = 0;  // Claim screen doesn't have any data to show
-    if (context->ticker) msg->numScreens = 1;
+    msg->numScreens = 1;
     msg->result = ETH_PLUGIN_RESULT_OK;
 }

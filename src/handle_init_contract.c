@@ -57,8 +57,9 @@ void handle_init_contract(void *parameters) {
             break;
 
         case ETH_MATICX_CLAIM_WITHDRAWAL:
+        case POLYGON_CHILDPOOL_CLAIM_MATICX_SWAP:
             context->next_param = UNEXPECTED_PARAMETER;
-            context->ticker = NULL;
+            context->ticker = "MATIC";
             break;
 
         case POLYGON_CHILDPOOL_SWAP_MATIC_FOR_MATICX_VIA_INSTANT_POOL:
