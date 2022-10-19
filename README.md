@@ -7,7 +7,7 @@ This is a plugin for the Ethereum application which helps parsing and displaying
 Clone the plugin to a new folder.
 
 ```shell
-git clone https://github.com/stader-labs/ledger-app-plugin.git
+git clone https://github.com/stader-labs/app-plugin-staderlabs.git
 ```
 
 Then in the same folder clone two more repositories, which is the plugin-tools and app-ethereum.
