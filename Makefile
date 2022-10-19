@@ -22,7 +22,7 @@ endif
 include $(BOLOS_SDK)/Makefile.defines
 
 # EDIT THIS: Put your plugin name
-APPNAME = "Boilerplate"
+APPNAME = "Staderlabs"
 
 ifeq ($(ETHEREUM_PLUGIN_SDK),)
 ETHEREUM_PLUGIN_SDK=ethereum-plugin-sdk
@@ -164,4 +164,4 @@ dep/%.d: %.c Makefile
 
 listvariants:
         # EDIT THIS: replace `boilerplate` by the lowercase name of your plugin
-	@echo VARIANTS NONE boilerplate
+	@echo VARIANTS NONE staderlabs

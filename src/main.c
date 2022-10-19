@@ -22,19 +22,56 @@
 #include "os.h"
 #include "cx.h"
 
-#include "boilerplate_plugin.h"
+#include "staderlabs_plugin.h"
 
 // List of selectors supported by this plugin.
-// EDIT THIS: Adapt the variable names and change the `0x` values to match your selectors.
-static const uint32_t SWAP_EXACT_ETH_FOR_TOKENS_SELECTOR = 0x7ff36ab5;
-static const uint32_t BOILERPLATE_DUMMY_SELECTOR_2 = 0x13374242;
 
-// Array of all the different boilerplate selectors. Make sure this follows the same order as the
-// enum defined in `boilerplate_plugin.h`
-// EDIT THIS: Use the names of the array declared above.
-const uint32_t BOILERPLATE_SELECTORS[NUM_SELECTORS] = {
-    SWAP_EXACT_ETH_FOR_TOKENS_SELECTOR,
-    BOILERPLATE_DUMMY_SELECTOR_2,
+// Network: Ethereum
+// Contract: MaticX
+// Method: function submit(uint256 _amount)
+// Selector: 0xea99c2a6
+static const uint32_t ETH_MATICX_SUBMIT_SELECTOR = 0xea99c2a6;
+
+// Network: Ethereum
+// Contract: MaticX
+// Method: function requestWithdraw(uint256 _amount)
+// Selector: 0x745400c9
+static const uint32_t ETH_MATICX_REQUEST_WITHDRAW_SELECTOR = 0x745400c9;
+
+// Network: Ethereum
+// Contract: MaticX
+// Method: function claimWithdrawal(uint256 _idx)
+// Selector: 0xf8444436
+static const uint32_t ETH_MATICX_CLAIM_WITHDRAWAL_SELECTOR = 0xf8444436;
+
+// Network: Polygon
+// Contract: ChildPool
+// Method: function swapMaticForMaticXViaInstantPool()
+// Selector: 0xc78cf1a0
+static const uint32_t POLYGON_CHILDPOOL_SWAP_MATIC_FOR_MATICX_VIA_INSTANT_POOL_SELECTOR =
+    0xc78cf1a0;
+
+// Network: Polygon
+// Contract: ChildPool
+// Method: function requestMaticXSwap(uint256 _amount)
+// Selector: 0x48eaf6d6
+static const uint32_t POLYGON_CHILDPOOL_REQUEST_MATICX_SWAP_SELECTOR = 0x48eaf6d6;
+
+// Network: Polygon
+// Contract: ChildPool
+// Method: function claimMaticXSwap(uint256 _idx)
+// Selector: 0x77baf209
+static const uint32_t POLYGON_CHILDPOOL_CLAIM_MATICX_SWAP_SELECTOR = 0x77baf209;
+
+// Array of all the different staderlabs selectors. Make sure this follows the same order as the
+// enum defined in `staderlabs_plugin.h`
+const uint32_t STADERLABS_SELECTORS[NUM_SELECTORS] = {
+    ETH_MATICX_SUBMIT_SELECTOR,
+    ETH_MATICX_REQUEST_WITHDRAW_SELECTOR,
+    ETH_MATICX_CLAIM_WITHDRAWAL_SELECTOR,
+    POLYGON_CHILDPOOL_SWAP_MATIC_FOR_MATICX_VIA_INSTANT_POOL_SELECTOR,
+    POLYGON_CHILDPOOL_REQUEST_MATICX_SWAP_SELECTOR,
+    POLYGON_CHILDPOOL_CLAIM_MATICX_SWAP_SELECTOR,
 };
 
 // Function to dispatch calls from the ethereum app.

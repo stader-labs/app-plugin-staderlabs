@@ -1,4 +1,4 @@
-#include "boilerplate_plugin.h"
+#include "staderlabs_plugin.h"
 
 static int find_selector(uint32_t selector, const uint32_t *selectors, size_t n, selector_t *out) {
     for (selector_t i = 0; i < n; i++) {
@@ -36,7 +36,7 @@ void handle_init_contract(void *parameters) {
     memset(context, 0, sizeof(*context));
 
     uint32_t selector = U4BE(msg->selector, 0);
-    if (find_selector(selector, BOILERPLATE_SELECTORS, NUM_SELECTORS, &context->selectorIndex)) {
+    if (find_selector(selector, STADERLABS_SELECTORS, NUM_SELECTORS, &context->selectorIndex)) {
         msg->result = ETH_PLUGIN_RESULT_UNAVAILABLE;
         return;
     }
@@ -45,12 +45,28 @@ void handle_init_contract(void *parameters) {
     // EDIT THIS: Adapt the `cases`, and set the `next_param` to be the first parameter you expect
     // to parse.
     switch (context->selectorIndex) {
-        case SWAP_EXACT_ETH_FOR_TOKENS:
-            context->next_param = MIN_AMOUNT_RECEIVED;
+        case ETH_MATICX_SUBMIT:
+            context->next_param = STAKE_AMOUNT;
+            context->ticker = "MATIC ";
             break;
-        case BOILERPLATE_DUMMY_2:
-            context->next_param = TOKEN_RECEIVED;
+
+        case ETH_MATICX_REQUEST_WITHDRAW:
+        case POLYGON_CHILDPOOL_REQUEST_MATICX_SWAP:
+            context->next_param = UNSTAKE_AMOUNT;
+            context->ticker = "MATICX ";
             break;
+
+        case ETH_MATICX_CLAIM_WITHDRAWAL:
+        case POLYGON_CHILDPOOL_CLAIM_MATICX_SWAP:
+            context->next_param = UNEXPECTED_PARAMETER;
+            context->ticker = "MATIC";
+            break;
+
+        case POLYGON_CHILDPOOL_SWAP_MATIC_FOR_MATICX_VIA_INSTANT_POOL:
+            context->next_param = UNEXPECTED_PARAMETER;
+            context->ticker = "MATIC ";
+            break;
+
         // Keep this
         default:
             PRINTF("Missing selectorIndex: %d\n", context->selectorIndex);

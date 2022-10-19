@@ -1,63 +1,46 @@
-#include "boilerplate_plugin.h"
+#include "staderlabs_plugin.h"
 
-// EDIT THIS: You need to adapt / remove the static functions (set_send_ui, set_receive_ui ...) to
-// match what you wish to display.
+static void set_native_token_stake_ui(ethQueryContractUI_t *msg, const context_t *context) {
+    strlcpy(msg->title, "Stake", msg->titleLength);
 
-// Set UI for the "Send" screen.
-// EDIT THIS: Adapt / remove this function to your needs.
-static void set_send_ui(ethQueryContractUI_t *msg) {
-    strlcpy(msg->title, "Send", msg->titleLength);
+    const uint8_t *native_token_amount = msg->pluginSharedRO->txContent->value.value;
+    uint8_t native_token_amount_size = msg->pluginSharedRO->txContent->value.length;
 
-    const uint8_t *eth_amount = msg->pluginSharedRO->txContent->value.value;
-    uint8_t eth_amount_size = msg->pluginSharedRO->txContent->value.length;
-
-    // Converts the uint256 number located in `eth_amount` to its string representation and
+    // Converts the uint256 number located in `native_token_amount` to its string representation and
     // copies this to `msg->msg`.
-    amountToString(eth_amount, eth_amount_size, WEI_TO_ETHER, "ETH ", msg->msg, msg->msgLength);
-}
-
-// Set UI for "Receive" screen.
-// EDIT THIS: Adapt / remove this function to your needs.
-static void set_receive_ui(ethQueryContractUI_t *msg, const context_t *context) {
-    strlcpy(msg->title, "Receive Min.", msg->titleLength);
-
-    uint8_t decimals = context->decimals;
-    const char *ticker = context->ticker;
-
-    // If the token look up failed, use the default network ticker along with the default decimals.
-    if (!context->token_found) {
-        decimals = WEI_TO_ETHER;
-        ticker = msg->network_ticker;
-    }
-
-    amountToString(context->amount_received,
-                   sizeof(context->amount_received),
-                   decimals,
-                   ticker,
+    amountToString(native_token_amount,
+                   native_token_amount_size,
+                   WEI_TO_ETHER,
+                   context->ticker,
                    msg->msg,
                    msg->msgLength);
 }
 
-// Set UI for "Beneficiary" screen.
-// EDIT THIS: Adapt / remove this function to your needs.
-static void set_beneficiary_ui(ethQueryContractUI_t *msg, context_t *context) {
-    strlcpy(msg->title, "Beneficiary", msg->titleLength);
+static void set_stake_ui(ethQueryContractUI_t *msg, const context_t *context) {
+    strlcpy(msg->title, "Stake", msg->titleLength);
 
-    // Prefix the address with `0x`.
-    msg->msg[0] = '0';
-    msg->msg[1] = 'x';
+    amountToString(context->amount_received,
+                   sizeof(context->amount_received),
+                   WEI_TO_ETHER,
+                   context->ticker,
+                   msg->msg,
+                   msg->msgLength);
+}
 
-    // We need a random chainID for legacy reasons with `getEthAddressStringFromBinary`.
-    // Setting it to `0` will make it work with every chainID :)
-    uint64_t chainid = 0;
+static void set_unstake_ui(ethQueryContractUI_t *msg, const context_t *context) {
+    strlcpy(msg->title, "Unstake", msg->titleLength);
 
-    // Get the string representation of the address stored in `context->beneficiary`. Put it in
-    // `msg->msg`.
-    getEthAddressStringFromBinary(
-        context->beneficiary,
-        msg->msg + 2,  // +2 here because we've already prefixed with '0x'.
-        msg->pluginSharedRW->sha3,
-        chainid);
+    amountToString(context->amount_received,
+                   sizeof(context->amount_received),
+                   WEI_TO_ETHER,
+                   context->ticker,
+                   msg->msg,
+                   msg->msgLength);
+}
+
+static void set_claim_ui(ethQueryContractUI_t *msg, const context_t *context) {
+    strlcpy(msg->title, "Claim", msg->titleLength);
+    strlcpy(msg->msg, context->ticker, msg->msgLength);
 }
 
 void handle_query_contract_ui(void *parameters) {
@@ -71,23 +54,37 @@ void handle_query_contract_ui(void *parameters) {
     memset(msg->title, 0, msg->titleLength);
     memset(msg->msg, 0, msg->msgLength);
 
-    msg->result = ETH_PLUGIN_RESULT_OK;
+    // if value of screenIndex is not 0, then it is invalid as we require only one screen in all
+    // methods
+    if (msg->screenIndex) {
+        PRINTF("Received an invalid screenIndex\n");
+        msg->result = ETH_PLUGIN_RESULT_ERROR;
+        return;
+    }
 
-    // EDIT THIS: Adapt the cases for the screens you'd like to display.
-    switch (msg->screenIndex) {
-        case 0:
-            set_send_ui(msg);
+    switch (context->selectorIndex) {
+        case ETH_MATICX_SUBMIT:
+            set_stake_ui(msg, context);
             break;
-        case 1:
-            set_receive_ui(msg, context);
+
+        case ETH_MATICX_REQUEST_WITHDRAW:
+        case POLYGON_CHILDPOOL_REQUEST_MATICX_SWAP:
+            set_unstake_ui(msg, context);
             break;
-        case 2:
-            set_beneficiary_ui(msg, context);
+
+        case ETH_MATICX_CLAIM_WITHDRAWAL:
+        case POLYGON_CHILDPOOL_CLAIM_MATICX_SWAP:
+            set_claim_ui(msg, context);
             break;
-        // Keep this
+
+        case POLYGON_CHILDPOOL_SWAP_MATIC_FOR_MATICX_VIA_INSTANT_POOL:
+            set_native_token_stake_ui(msg, context);
+            break;
+
         default:
-            PRINTF("Received an invalid screenIndex\n");
+            PRINTF("Selector index: %d not supported\n", context->selectorIndex);
             msg->result = ETH_PLUGIN_RESULT_ERROR;
             return;
     }
+    msg->result = ETH_PLUGIN_RESULT_OK;
 }

@@ -1,4 +1,4 @@
-#include "boilerplate_plugin.h"
+#include "staderlabs_plugin.h"
 
 // Sets the first screen to display.
 void handle_query_contract_id(void *parameters) {
@@ -9,13 +9,31 @@ void handle_query_contract_id(void *parameters) {
 
     // For the first screen, display the plugin name.
     strlcpy(msg->name, PLUGIN_NAME, msg->nameLength);
+    char *msgVersion;
 
     // EDIT THIS: Adapt the cases by modifying the strings you pass to `strlcpy`.
-    if (context->selectorIndex == SWAP_EXACT_ETH_FOR_TOKENS) {
-        strlcpy(msg->version, "Swap", msg->versionLength);
-        msg->result = ETH_PLUGIN_RESULT_OK;
-    } else {
-        PRINTF("Selector index: %d not supported\n", context->selectorIndex);
-        msg->result = ETH_PLUGIN_RESULT_ERROR;
+    switch (context->selectorIndex) {
+        case ETH_MATICX_SUBMIT:
+        case POLYGON_CHILDPOOL_SWAP_MATIC_FOR_MATICX_VIA_INSTANT_POOL:
+            msgVersion = "Stake";
+            break;
+
+        case ETH_MATICX_REQUEST_WITHDRAW:
+        case POLYGON_CHILDPOOL_REQUEST_MATICX_SWAP:
+            msgVersion = "Unstake";
+            break;
+
+        case ETH_MATICX_CLAIM_WITHDRAWAL:
+        case POLYGON_CHILDPOOL_CLAIM_MATICX_SWAP:
+            msgVersion = "Claim";
+            break;
+
+        default:
+            PRINTF("Selector index: %d not supported\n", context->selectorIndex);
+            msg->result = ETH_PLUGIN_RESULT_ERROR;
+            return;
     }
+
+    strlcpy(msg->version, msgVersion, msg->versionLength);
+    msg->result = ETH_PLUGIN_RESULT_OK;
 }

@@ -1,32 +1,57 @@
-# app-plugin-boilerplate
+# Ledger Staderlabs Plugin
 
-This repo is a meant to be a forkable example of a plugin.
+This is a plugin for the Ethereum application which helps parsing and displaying relevant information when signing a Staderlabs transaction.
 
-Plugins are lightweight applications that go hand-in-hand with the Ethereum
-Application on a Nano S / X device.
+## Prerequisite
 
-They allow users to safely interact with smart contracts by parsing the
-transaction data and displaying its content in a human readable way. This is
-done on a "per contract" basis, meaning a plugin is required for every DApp.
+Clone the plugin to a new folder.
 
-The code has been commented, and special "EDIT THIS" comments indicate where
-developers are expected to adapt the code to their own needs.
+```shell
+git clone https://github.com/stader-labs/ledger-app-plugin.git
+```
 
-It is STRONGLY recommended to follow the
-[plugin guide](https://developers.ledger.com/docs/dapp/nano-plugin/overview/)
-in order to better understand the flow and the context for plugins.
+Then in the same folder clone two more repositories, which is the plugin-tools and app-ethereum.
 
-## Ethereum SDK
+```shell
+git clone https://github.com/LedgerHQ/plugin-tools.git                          #plugin-tools
+git clone --recurse-submodules https://github.com/LedgerHQ/app-ethereum.git     #app-ethereum
+```
 
-Ethereum plugins need the [Ethereum SDK](https://github.com/LedgerHQ/ethereum-plugin-sdk).
-You can use the `ETHEREUM_PLUGIN_SDK` variable to point to the directory where you cloned
-this repository. By default, the `Makefile` expects it to be at the root directory of this
-plugin repository, by the `ethereum-plugin-sdk` name.
+## Documentation
 
-This repository is deliberately **not** a submodule. You can see that the CI workflows
-clone and checkout either the latest `master` or on `develop` references. This ensures
-the code is compiled and tested on the latest version of the SDK.
+Need more information about the interface, the architecture, or general stuff about ethereum plugins? You can find more about them in the [ethereum-app documentation](https://github.com/LedgerHQ/app-ethereum/blob/master/doc/ethapp_plugins.asc).
 
-## Formatting
+## Smart Contracts
 
-The C source code is expected to be formatted with `clang-format` 11.0.0 or higher.
+Smart contracts covered by this plugin are:
+
+| Network  | Contract Name | Smart Contract                               |
+| -------- | ------------- | -------------------------------------------- |
+| Ethereum | MaticX        | `0xf03a7eb46d01d9ecaa104558c732cf82f6b6b645` |
+| Polygon  | ChildPool     | `0xfd225c9e6601c9d38d8f98d8731bf59efcf8c0e3` |
+
+## Build
+
+Go to the plugin-tools folder and run the "./start" script.
+
+```shell
+cd plugin-tools  # go to plugin folder
+./start.sh       # run the script start.sh
+```
+
+The script will build a docker image and attach a console.
+When the docker image is running go to the "app-plugin-staderlabs" folder and build the ".elf" files.
+
+```shell
+cd app-plugin-staderlabs/tests       # go to the tests folder in app-plugin-staderlabs
+./build_local_test_elfs.sh           # run the script build_local_test_elfs.sh
+```
+
+## Tests
+
+To test the plugin go to the tests folder from the "app-plugin-staderlabs" and run the script "test"
+
+```shell
+cd app-plugin-staderlabs/tests       # go to the tests folder in app-plugin-staderlabs
+yarn test                            # run the script test
+```
