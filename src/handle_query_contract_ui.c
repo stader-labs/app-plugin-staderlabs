@@ -69,15 +69,18 @@ void handle_query_contract_ui(void *parameters) {
 
         case ETH_MATICX_REQUEST_WITHDRAW:
         case POLYGON_CHILDPOOL_REQUEST_MATICX_SWAP:
+        case BSC_STAKEMANAGER_REQUEST_WITHDRAW:
             set_unstake_ui(msg, context);
             break;
 
         case ETH_MATICX_CLAIM_WITHDRAWAL:
         case POLYGON_CHILDPOOL_CLAIM_MATICX_SWAP:
+        case BSC_STAKEMANAGER_CLAIM_WITHDRAW:
             set_claim_ui(msg, context);
             break;
 
         case POLYGON_CHILDPOOL_SWAP_MATIC_FOR_MATICX_VIA_INSTANT_POOL:
+        case BSC_STAKEMANAGER_DEPOSIT:
             set_native_token_stake_ui(msg, context);
             break;
 

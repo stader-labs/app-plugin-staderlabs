@@ -63,6 +63,24 @@ static const uint32_t POLYGON_CHILDPOOL_REQUEST_MATICX_SWAP_SELECTOR = 0x48eaf6d
 // Selector: 0x77baf209
 static const uint32_t POLYGON_CHILDPOOL_CLAIM_MATICX_SWAP_SELECTOR = 0x77baf209;
 
+// Network: BSC
+// Contract: StakeManager
+// Method: function deposit()
+// Selector: 0xd0e30db0
+static const uint32_t BSC_STAKEMANAGER_DEPOSIT_SELECTOR = 0xd0e30db0;
+
+// Network: BSC
+// Contract: StakeManager
+// Method: function requestWithdraw(uint256 _amountInBnbX)
+// Selector: 0x745400c9
+static const uint32_t BSC_STAKEMANAGER_REQUEST_WITHDRAW_SELECTOR = 0x745400c9;
+
+// Network: BSC
+// Contract: StakeManager
+// Method: function claimWithdraw(uint256 _idx)
+// Selector: 0xb13acedd
+static const uint32_t BSC_STAKEMANAGER_CLAIM_WITHDRAW_SELECTOR = 0xb13acedd;
+
 // Array of all the different staderlabs selectors. Make sure this follows the same order as the
 // enum defined in `staderlabs_plugin.h`
 const uint32_t STADERLABS_SELECTORS[NUM_SELECTORS] = {
@@ -72,6 +90,9 @@ const uint32_t STADERLABS_SELECTORS[NUM_SELECTORS] = {
     POLYGON_CHILDPOOL_SWAP_MATIC_FOR_MATICX_VIA_INSTANT_POOL_SELECTOR,
     POLYGON_CHILDPOOL_REQUEST_MATICX_SWAP_SELECTOR,
     POLYGON_CHILDPOOL_CLAIM_MATICX_SWAP_SELECTOR,
+    BSC_STAKEMANAGER_DEPOSIT_SELECTOR,
+    BSC_STAKEMANAGER_REQUEST_WITHDRAW_SELECTOR,
+    BSC_STAKEMANAGER_CLAIM_WITHDRAW_SELECTOR,
 };
 
 // Function to dispatch calls from the ethereum app.
