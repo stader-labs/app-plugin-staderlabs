@@ -1,4 +1,4 @@
-#include "staderlabs_plugin.h"
+#include "staderpolygon_plugin.h"
 
 // Sets the first screen to display.
 void handle_query_contract_id(void *parameters) {

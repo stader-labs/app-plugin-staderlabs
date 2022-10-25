@@ -22,7 +22,7 @@
 #include "os.h"
 #include "cx.h"
 
-#include "staderlabs_plugin.h"
+#include "staderpolygon_plugin.h"
 
 // List of selectors supported by this plugin.
 
@@ -64,8 +64,8 @@ static const uint32_t POLYGON_CHILDPOOL_REQUEST_MATICX_SWAP_SELECTOR = 0x48eaf6d
 static const uint32_t POLYGON_CHILDPOOL_CLAIM_MATICX_SWAP_SELECTOR = 0x77baf209;
 
 // Array of all the different staderlabs selectors. Make sure this follows the same order as the
-// enum defined in `staderlabs_plugin.h`
-const uint32_t STADERLABS_SELECTORS[NUM_SELECTORS] = {
+// enum defined in `staderpolygon_plugin.h`
+const uint32_t STADERPOLYGON_SELECTORS[NUM_SELECTORS] = {
     ETH_MATICX_SUBMIT_SELECTOR,
     ETH_MATICX_REQUEST_WITHDRAW_SELECTOR,
     ETH_MATICX_CLAIM_WITHDRAWAL_SELECTOR,

@@ -8,7 +8,6 @@ import {
 } from "../test.fixture";
 
 const contractAddr = "0xfd225c9e6601c9d38d8f98d8731bf59efcf8c0e3";
-const pluginName = "staderlabs";
 const testNetwork = "polygon";
 const chainID = 137;
 const signedPlugin = false;

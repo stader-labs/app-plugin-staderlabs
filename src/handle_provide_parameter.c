@@ -1,4 +1,4 @@
-#include "staderlabs_plugin.h"
+#include "staderpolygon_plugin.h"
 
 // Copy amount sent parameter to amount_received
 static void handle_amount_received(const ethPluginProvideParameter_t *msg, context_t *context) {

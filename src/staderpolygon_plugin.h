@@ -8,7 +8,7 @@
 #define NUM_SELECTORS 6
 
 // Name of the plugin.
-#define PLUGIN_NAME "Staderlabs"
+#define PLUGIN_NAME "StaderPolygon"
 
 // Enumeration of the different selectors possible.
 // Should follow the exact same order as the array declared in main.c
@@ -28,7 +28,7 @@ typedef enum {
     UNEXPECTED_PARAMETER,
 } parameter;
 
-extern const uint32_t STADERLABS_SELECTORS[NUM_SELECTORS];
+extern const uint32_t STADERPOLYGON_SELECTORS[NUM_SELECTORS];
 
 // Shared global memory with Ethereum app. Must be at most 5 * 32 bytes.
 typedef struct context_t {

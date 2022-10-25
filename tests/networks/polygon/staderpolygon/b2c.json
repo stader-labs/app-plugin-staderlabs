@@ -8,20 +8,20 @@
         "0xc78cf1a0": {
           "erc20OfInterest": [],
           "method": "swapMaticForMaticXViaInstantPool",
-          "plugin": "Staderlabs"
+          "plugin": "StaderPolygon"
         },
         "0x48eaf6d6": {
           "erc20OfInterest": [],
           "method": "requestMaticXSwap",
-          "plugin": "Staderlabs"
+          "plugin": "StaderPolygon"
         },
         "0x77baf209": {
           "erc20OfInterest": [],
           "method": "claimMaticXSwap",
-          "plugin": "Staderlabs"
+          "plugin": "StaderPolygon"
         }
       }
     }
   ],
-  "name": "Staderlabs"
+  "name": "StaderPolygon"
 }

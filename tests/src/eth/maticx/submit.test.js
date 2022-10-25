@@ -9,7 +9,6 @@ import {
 } from "../../test.fixture";
 
 const contractAddr = "0xf03a7eb46d01d9ecaa104558c732cf82f6b6b645";
-const pluginName = "staderlabs";
 const testNetwork = "ethereum";
 const chainID = 1;
 // Test from replayed transaction: https://etherscan.io/tx/0x92f606f3ab623de706e4a1a2bfdcfa95d07f071f2f3aacfc729aefa6b3c6d94c

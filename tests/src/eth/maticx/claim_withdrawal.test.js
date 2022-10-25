@@ -8,7 +8,6 @@ import {
 } from "../../test.fixture";
 
 const contractAddr = "0xf03a7eb46d01d9ecaa104558c732cf82f6b6b645";
-const pluginName = "staderlabs";
 const testNetwork = "ethereum";
 
 // Test from replayed transaction: https://etherscan.io/tx/0xf3c639002557eafa1560159010093927560ebbb351720c279be67bd3c480d103
