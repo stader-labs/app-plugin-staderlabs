@@ -5,7 +5,7 @@
 #include <string.h>
 
 // Number of selectors defined in this plugin. Should match the enum `selector_t`.
-#define NUM_SELECTORS 6
+#define NUM_SELECTORS 9
 
 // Name of the plugin.
 #define PLUGIN_NAME "Staderlabs"
@@ -19,6 +19,9 @@ typedef enum {
     POLYGON_CHILDPOOL_SWAP_MATIC_FOR_MATICX_VIA_INSTANT_POOL,
     POLYGON_CHILDPOOL_REQUEST_MATICX_SWAP,
     POLYGON_CHILDPOOL_CLAIM_MATICX_SWAP,
+    BSC_STAKEMANAGER_DEPOSIT,
+    BSC_STAKEMANAGER_REQUEST_WITHDRAW,
+    BSC_STAKEMANAGER_CLAIM_WITHDRAW,
 } selector_t;
 
 // Enumeration used to parse the smart contract data.

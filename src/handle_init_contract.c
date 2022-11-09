@@ -50,10 +50,26 @@ void handle_init_contract(void *parameters) {
             context->ticker = "MATIC ";
             break;
 
+        case POLYGON_CHILDPOOL_SWAP_MATIC_FOR_MATICX_VIA_INSTANT_POOL:
+            context->next_param = UNEXPECTED_PARAMETER;
+            context->ticker = "MATIC ";
+            break;
+
+        case BSC_STAKEMANAGER_DEPOSIT:
+            context->next_param = UNEXPECTED_PARAMETER;
+            context->ticker = "BNB ";
+            break;
+
         case ETH_MATICX_REQUEST_WITHDRAW:
         case POLYGON_CHILDPOOL_REQUEST_MATICX_SWAP:
             context->next_param = UNSTAKE_AMOUNT;
             context->ticker = "MATICX ";
+            break;
+
+        // the below case is of no use, as the selector matches with `ETH_MATICX_REQUEST_WITHDRAW`
+        case BSC_STAKEMANAGER_REQUEST_WITHDRAW:
+            context->next_param = UNSTAKE_AMOUNT;
+            context->ticker = "BNBX ";
             break;
 
         case ETH_MATICX_CLAIM_WITHDRAWAL:
@@ -62,9 +78,9 @@ void handle_init_contract(void *parameters) {
             context->ticker = "MATIC";
             break;
 
-        case POLYGON_CHILDPOOL_SWAP_MATIC_FOR_MATICX_VIA_INSTANT_POOL:
+        case BSC_STAKEMANAGER_CLAIM_WITHDRAW:
             context->next_param = UNEXPECTED_PARAMETER;
-            context->ticker = "MATIC ";
+            context->ticker = "BNB";
             break;
 
         // Keep this
