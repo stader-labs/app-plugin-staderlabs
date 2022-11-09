@@ -32,7 +32,7 @@ nano_models.forEach(function (model) {
         // Navigate the display by pressing the right button `right_clicks` times, then pressing both buttons to accept the transaction.
         await sim.navigateAndCompareSnapshots(
           ".",
-          testNetwork + "_bnbx_" + model.name + "_deposit_",
+          testNetwork + "_bnbx_" + model.name + "_deposit",
           [right_clicks, 0]
         );
 

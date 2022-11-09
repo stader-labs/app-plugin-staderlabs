@@ -27,8 +27,13 @@ static void set_stake_ui(ethQueryContractUI_t *msg, const context_t *context) {
                    msg->msgLength);
 }
 
-static void set_unstake_ui(ethQueryContractUI_t *msg, const context_t *context) {
+static void set_unstake_ui(ethQueryContractUI_t *msg, context_t *context) {
     strlcpy(msg->title, "Unstake", msg->titleLength);
+
+    char bsc_ticker[MAX_TICKER_LEN] = "BNB";
+    if (memcmp(msg->network_ticker, bsc_ticker, 3) == 0) {
+        context->ticker = "BNBX ";
+    }
 
     amountToString(context->amount_received,
                    sizeof(context->amount_received),
@@ -38,8 +43,15 @@ static void set_unstake_ui(ethQueryContractUI_t *msg, const context_t *context) 
                    msg->msgLength);
 }
 
-static void set_claim_ui(ethQueryContractUI_t *msg, const context_t *context) {
+static void set_claim_ui(ethQueryContractUI_t *msg, context_t *context) {
     strlcpy(msg->title, "Claim", msg->titleLength);
+
+    char bsc_ticker[MAX_TICKER_LEN] = "BNB";
+
+    if (memcmp(msg->network_ticker, bsc_ticker, 3) == 0) {
+        context->ticker = "BNB";
+    }
+
     strlcpy(msg->msg, context->ticker, msg->msgLength);
 }
 
