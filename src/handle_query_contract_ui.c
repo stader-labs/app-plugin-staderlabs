@@ -43,7 +43,7 @@ static void set_unstake_ui(ethQueryContractUI_t *msg, context_t *context) {
                    msg->msgLength);
 }
 
-static void set_claim_ui(ethQueryContractUI_t *msg, context_t *context) {
+static void set_claim_ui(ethQueryContractUI_t *msg, const context_t *context) {
     strlcpy(msg->title, "Claim", msg->titleLength);
     strlcpy(msg->msg, context->ticker, msg->msgLength);
 }
