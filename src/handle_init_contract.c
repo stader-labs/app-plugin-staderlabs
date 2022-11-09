@@ -66,6 +66,7 @@ void handle_init_contract(void *parameters) {
             context->ticker = "MATICX ";
             break;
 
+        // the below case is of no use, as the selector matches with `ETH_MATICX_REQUEST_WITHDRAW`
         case BSC_STAKEMANAGER_REQUEST_WITHDRAW:
             context->next_param = UNSTAKE_AMOUNT;
             context->ticker = "BNBX ";
