@@ -5,7 +5,7 @@
 #include <string.h>
 
 // Number of selectors defined in this plugin. Should match the enum `selector_t`.
-#define NUM_SELECTORS 9
+#define NUM_SELECTORS 12
 
 // Name of the plugin.
 #define PLUGIN_NAME "Staderlabs"
@@ -22,6 +22,9 @@ typedef enum {
     BSC_STAKEMANAGER_DEPOSIT,
     BSC_STAKEMANAGER_REQUEST_WITHDRAW,
     BSC_STAKEMANAGER_CLAIM_WITHDRAW,
+    FTM_DEPOSIT,
+    FTM_UNDELEGATE,
+    FTM_WITHDRAW
 } selector_t;
 
 // Enumeration used to parse the smart contract data.
@@ -40,7 +43,8 @@ typedef struct context_t {
     char *ticker;
 
     // For parsing data.
-    uint8_t next_param;  // Set to be the next param we expect to parse.
+    uint8_t next_param;    // Set to be the next param we expect to parse.
+    bool skip_next_param;  // flag to skip next param while parsing.
 
     // For both parsing and display.
     selector_t selectorIndex;

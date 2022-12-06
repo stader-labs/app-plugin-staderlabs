@@ -1,10 +1,15 @@
 #include "staderlabs_plugin.h"
 
-static void set_native_token_stake_ui(ethQueryContractUI_t *msg, const context_t *context) {
+static void set_native_token_stake_ui(ethQueryContractUI_t *msg, context_t *context) {
     strlcpy(msg->title, "Stake", msg->titleLength);
 
     const uint8_t *native_token_amount = msg->pluginSharedRO->txContent->value.value;
     uint8_t native_token_amount_size = msg->pluginSharedRO->txContent->value.length;
+
+    char ftm_ticker[MAX_TICKER_LEN] = "FTM";
+    if (memcmp(msg->network_ticker, ftm_ticker, 3) == 0) {
+        context->ticker = "FTM ";
+    }
 
     // Converts the uint256 number located in `native_token_amount` to its string representation and
     // copies this to `msg->msg`.
@@ -75,17 +80,20 @@ void handle_query_contract_ui(void *parameters) {
         case ETH_MATICX_REQUEST_WITHDRAW:
         case POLYGON_CHILDPOOL_REQUEST_MATICX_SWAP:
         case BSC_STAKEMANAGER_REQUEST_WITHDRAW:
+        case FTM_UNDELEGATE:
             set_unstake_ui(msg, context);
             break;
 
         case ETH_MATICX_CLAIM_WITHDRAWAL:
         case POLYGON_CHILDPOOL_CLAIM_MATICX_SWAP:
         case BSC_STAKEMANAGER_CLAIM_WITHDRAW:
+        case FTM_WITHDRAW:
             set_claim_ui(msg, context);
             break;
 
         case POLYGON_CHILDPOOL_SWAP_MATIC_FOR_MATICX_VIA_INSTANT_POOL:
         case BSC_STAKEMANAGER_DEPOSIT:
+        case FTM_DEPOSIT:
             set_native_token_stake_ui(msg, context);
             break;
 

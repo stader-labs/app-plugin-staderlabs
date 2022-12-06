@@ -81,6 +81,24 @@ static const uint32_t BSC_STAKEMANAGER_REQUEST_WITHDRAW_SELECTOR = 0x745400c9;
 // Selector: 0xb13acedd
 static const uint32_t BSC_STAKEMANAGER_CLAIM_WITHDRAW_SELECTOR = 0xb13acedd;
 
+// Network: Fantom
+// Contract: FTMStaking
+// Method: function deposit()
+// Selector: 0xd0e30db0
+static const uint32_t FTM_DEPOSIT_SELECTOR = 0xd0e30db0;
+
+// Network: Fantom
+// Contract: FTMStaking
+// Method: function undelegate(uint256 wrID, uint256 amountFTMx, uint256 minAmountFTM)
+// Selector: 0x4f864df4
+static const uint32_t FTM_UNDELEGATE_SELECTOR = 0x4f864df4;
+
+// Network: Fantom
+// Contract: FTMStaking
+// Method: function withdraw(uint256 wrID, uint256 bitmaskToSkip)
+// Selector: 0x441a3e70
+static const uint32_t FTM_WITHDRAW_SELECTOR = 0x441a3e70;
+
 // Array of all the different staderlabs selectors. Make sure this follows the same order as the
 // enum defined in `staderlabs_plugin.h`
 const uint32_t STADERLABS_SELECTORS[NUM_SELECTORS] = {
@@ -93,6 +111,9 @@ const uint32_t STADERLABS_SELECTORS[NUM_SELECTORS] = {
     BSC_STAKEMANAGER_DEPOSIT_SELECTOR,
     BSC_STAKEMANAGER_REQUEST_WITHDRAW_SELECTOR,
     BSC_STAKEMANAGER_CLAIM_WITHDRAW_SELECTOR,
+    FTM_DEPOSIT_SELECTOR,
+    FTM_UNDELEGATE_SELECTOR,
+    FTM_WITHDRAW_SELECTOR,
 };
 
 // Function to dispatch calls from the ethereum app.

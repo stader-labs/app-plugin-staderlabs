@@ -1,0 +1,27 @@
+{
+  "chainId": 250,
+  "contracts": [
+    {
+      "address": "0xb458bfc855ab504a8a327720fcef98886065529b",
+      "contractName": "FTMStaking",
+      "selectors": {
+        "0xd0e30db0": {
+          "erc20OfInterest": [],
+          "method": "deposit",
+          "plugin": "Staderlabs"
+        },
+        "0x4f864df4": {
+          "erc20OfInterest": [],
+          "method": "undelegate",
+          "plugin": "Staderlabs"
+        },
+        "0x441a3e70": {
+          "erc20OfInterest": [],
+          "method": "withdraw",
+          "plugin": "Staderlabs"
+        }
+      }
+    }
+  ],
+  "name": "Staderlabs"
+}
