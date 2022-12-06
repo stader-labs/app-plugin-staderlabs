@@ -16,18 +16,21 @@ void handle_query_contract_id(void *parameters) {
         case ETH_MATICX_SUBMIT:
         case POLYGON_CHILDPOOL_SWAP_MATIC_FOR_MATICX_VIA_INSTANT_POOL:
         case BSC_STAKEMANAGER_DEPOSIT:
+        case FTM_DEPOSIT:
             msgVersion = "Stake";
             break;
 
         case ETH_MATICX_REQUEST_WITHDRAW:
         case POLYGON_CHILDPOOL_REQUEST_MATICX_SWAP:
         case BSC_STAKEMANAGER_REQUEST_WITHDRAW:
+        case FTM_UNDELEGATE:
             msgVersion = "Unstake";
             break;
 
         case ETH_MATICX_CLAIM_WITHDRAWAL:
         case POLYGON_CHILDPOOL_CLAIM_MATICX_SWAP:
         case BSC_STAKEMANAGER_CLAIM_WITHDRAW:
+        case FTM_WITHDRAW:
             msgVersion = "Claim";
             break;
 
