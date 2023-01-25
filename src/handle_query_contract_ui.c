@@ -8,7 +8,7 @@ static void set_native_token_stake_ui(ethQueryContractUI_t *msg, context_t *cont
 
     char ftm_ticker[MAX_TICKER_LEN] = "FTM";
     if (memcmp(msg->network_ticker, ftm_ticker, 3) == 0) {
-        context->ticker = "FTM ";
+        context->ticker = ftm_ticker;
     }
 
     // Converts the uint256 number located in `native_token_amount` to its string representation and
@@ -37,7 +37,7 @@ static void set_unstake_ui(ethQueryContractUI_t *msg, context_t *context) {
 
     char bsc_ticker[MAX_TICKER_LEN] = "BNB";
     if (memcmp(msg->network_ticker, bsc_ticker, 3) == 0) {
-        context->ticker = "BNBX ";
+        context->ticker = "BNBX";
     }
 
     amountToString(context->amount_received,

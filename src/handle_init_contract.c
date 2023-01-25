@@ -47,19 +47,19 @@ void handle_init_contract(void *parameters) {
     switch (context->selectorIndex) {
         case ETH_MATICX_SUBMIT:
             context->next_param = STAKE_AMOUNT;
-            context->ticker = "MATIC ";
+            context->ticker = "MATIC";
             break;
 
         case POLYGON_CHILDPOOL_SWAP_MATIC_FOR_MATICX_VIA_INSTANT_POOL:
             context->next_param = UNEXPECTED_PARAMETER;
-            context->ticker = "MATIC ";
+            context->ticker = "MATIC";
             break;
 
         case BSC_STAKEMANAGER_DEPOSIT:
         // the below case is of no use, as the selector matches with `BSC_STAKEMANAGER_DEPOSIT`
         case FTM_DEPOSIT:
             context->next_param = UNEXPECTED_PARAMETER;
-            context->ticker = "BNB ";
+            context->ticker = "BNB";
             break;
 
         case ETH_MATICX_REQUEST_WITHDRAW:
@@ -67,12 +67,12 @@ void handle_init_contract(void *parameters) {
         case BSC_STAKEMANAGER_REQUEST_WITHDRAW:
         case POLYGON_CHILDPOOL_REQUEST_MATICX_SWAP:
             context->next_param = UNSTAKE_AMOUNT;
-            context->ticker = "MATICX ";
+            context->ticker = "MATICX";
             break;
 
         case FTM_UNDELEGATE:
             context->next_param = UNSTAKE_AMOUNT;
-            context->ticker = "FTMX ";
+            context->ticker = "FTMX";
             context->skip_next_param = true;
             break;
 
