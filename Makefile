@@ -36,11 +36,15 @@ APPVERSION_N     = 0
 APPVERSION_P     = 1
 APPVERSION       = "$(APPVERSION_M).$(APPVERSION_N).$(APPVERSION_P)"
 
-# EDIT THIS: Change the name of the gif, and generate you own GIFs!
 ifeq ($(TARGET_NAME), TARGET_NANOS)
-ICONNAME=icons/nanos_app_boilerplate.gif
+ICONNAME=icons/nanos_app_staderlabs.gif
+else ifeq ($(TARGET_NAME), TARGET_STAX)
+ICONNAME=icons/stax_app_staderlabs.gif
+DEFINES += ICONGLYPH=C_stax_staderlabs_64px
+DEFINES += ICONBITMAP=C_stax_staderlabs_64px_bitmap
+GLYPH_FILES += $(ICONNAME)
 else
-ICONNAME=icons/nanox_app_boilerplate.gif
+ICONNAME=icons/nanox_app_staderlabs.gif
 endif
 
 ################
