@@ -42,6 +42,20 @@ static void handle_unstake(ethPluginProvideParameter_t *msg, context_t *context)
     }
 }
 
+static void handle_ethx_deposit(ethPluginProvideParameter_t *msg, context_t *context) {
+    switch (context->next_param) {
+        case ACCOUNT_ADDR:
+            copy_address(context->account_addr, msg->parameter, sizeof(context->account_addr));
+            context->next_param = UNEXPECTED_PARAMETER;
+            break;
+
+        // Keep this
+        default:
+            handle_unsupported_param(msg, context);
+            break;
+    }
+}
+
 void handle_provide_parameter(void *parameters) {
     ethPluginProvideParameter_t *msg = (ethPluginProvideParameter_t *) parameters;
     context_t *context = (context_t *) msg->pluginContext;
@@ -57,6 +71,11 @@ void handle_provide_parameter(void *parameters) {
 
     // EDIT THIS: adapt the cases and the names of the functions.
     switch (context->selectorIndex) {
+        case ETHX_DEPOSIT:
+            handle_ethx_deposit(msg, context);
+            context->numScreens = 2;
+            break;
+
         case ETH_MATICX_SUBMIT:
             handle_stake(msg, context);
             break;
