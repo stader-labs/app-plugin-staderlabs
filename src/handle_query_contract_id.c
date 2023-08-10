@@ -29,6 +29,7 @@ void handle_query_contract_id(void *parameters) {
             msgVersion = "Unstake";
             break;
 
+        case ETHX_CLAIM:
         case ETH_MATICX_CLAIM_WITHDRAWAL:
         case POLYGON_CHILDPOOL_CLAIM_MATICX_SWAP:
         case BSC_STAKEMANAGER_CLAIM_WITHDRAW:

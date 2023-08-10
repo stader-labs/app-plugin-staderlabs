@@ -55,7 +55,10 @@ void handle_init_contract(void *parameters) {
             context->ticker = "ETHX";
             break;
 
-            // case ETHX_CLAIM:
+        case ETHX_CLAIM:
+            context->next_param = UNEXPECTED_PARAMETER;
+            context->ticker = "ETH";
+            break;
 
         case ETH_MATICX_SUBMIT:
             context->next_param = STAKE_AMOUNT;

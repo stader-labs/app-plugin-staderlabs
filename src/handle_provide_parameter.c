@@ -109,6 +109,7 @@ void handle_provide_parameter(void *parameters) {
             handle_unstake(msg, context);
             break;
 
+        case ETHX_CLAIM:
         case ETH_MATICX_CLAIM_WITHDRAWAL:
         case POLYGON_CHILDPOOL_SWAP_MATIC_FOR_MATICX_VIA_INSTANT_POOL:
         case POLYGON_CHILDPOOL_CLAIM_MATICX_SWAP:
