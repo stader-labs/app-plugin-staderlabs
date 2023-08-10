@@ -52,7 +52,6 @@ typedef struct context_t {
     bool skip_next_param;  // flag to skip next param while parsing.
 
     // For both parsing and display.
-    uint8_t numScreens;
     selector_t selectorIndex;
 } context_t;
 

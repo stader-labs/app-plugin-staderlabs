@@ -13,6 +13,7 @@ void handle_query_contract_id(void *parameters) {
 
     // EDIT THIS: Adapt the cases by modifying the strings you pass to `strlcpy`.
     switch (context->selectorIndex) {
+        case ETHX_DEPOSIT:
         case ETH_MATICX_SUBMIT:
         case POLYGON_CHILDPOOL_SWAP_MATIC_FOR_MATICX_VIA_INSTANT_POOL:
         case BSC_STAKEMANAGER_DEPOSIT:

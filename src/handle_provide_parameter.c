@@ -73,7 +73,6 @@ void handle_provide_parameter(void *parameters) {
     switch (context->selectorIndex) {
         case ETHX_DEPOSIT:
             handle_ethx_deposit(msg, context);
-            context->numScreens = 2;
             break;
 
         case ETH_MATICX_SUBMIT:

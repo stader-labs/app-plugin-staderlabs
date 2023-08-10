@@ -86,7 +86,6 @@ static void handle_ethx_deposit(ethQueryContractUI_t *msg, const context_t *cont
             msg->result = ETH_PLUGIN_RESULT_ERROR;
             return;
     }
-    strlcpy(msg->msg, context->ticker, msg->msgLength);
 }
 
 void handle_query_contract_ui(void *parameters) {
