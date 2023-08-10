@@ -6,6 +6,7 @@ void handle_finalize(void *parameters) {
 
     switch (context->selectorIndex) {
         case ETHX_DEPOSIT:
+        case ETHX_REQUEST_WITHDRAW:
             msg->numScreens = 2;
             break;
 

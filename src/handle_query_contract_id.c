@@ -21,6 +21,7 @@ void handle_query_contract_id(void *parameters) {
             msgVersion = "Stake";
             break;
 
+        case ETHX_REQUEST_WITHDRAW:
         case ETH_MATICX_REQUEST_WITHDRAW:
         case POLYGON_CHILDPOOL_REQUEST_MATICX_SWAP:
         case BSC_STAKEMANAGER_REQUEST_WITHDRAW:

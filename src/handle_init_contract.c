@@ -50,7 +50,10 @@ void handle_init_contract(void *parameters) {
             context->ticker = "ETH";
             break;
 
-            // case ETHX_REQUEST_WITHDRAW:
+        case ETHX_REQUEST_WITHDRAW:
+            context->next_param = UNSTAKE_AMOUNT;
+            context->ticker = "ETHX";
+            break;
 
             // case ETHX_CLAIM:
 

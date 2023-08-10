@@ -72,9 +72,31 @@ static void set_account_addr_ui(ethQueryContractUI_t *msg, context_t *context) {
 }
 
 static void handle_ethx_deposit(ethQueryContractUI_t *msg, const context_t *context) {
+    memset(msg->title, 0, msg->titleLength);
+    memset(msg->msg, 0, msg->msgLength);
+
     switch (msg->screenIndex) {
         case 0:
             set_native_token_stake_ui(msg, context);
+            break;
+        case 1:
+            strlcpy(msg->title, "Receiver", msg->titleLength);
+            set_account_addr_ui(msg, context);
+            break;
+
+        default:
+            PRINTF("Received an invalid screenIndex\n");
+            msg->result = ETH_PLUGIN_RESULT_ERROR;
+            return;
+    }
+}
+
+static void handle_ethx_request_withdraw(ethQueryContractUI_t *msg, const context_t *context) {
+    memset(msg->title, 0, msg->titleLength);
+    memset(msg->msg, 0, msg->msgLength);
+    switch (msg->screenIndex) {
+        case 0:
+            set_unstake_ui(msg, context);
             break;
         case 1:
             strlcpy(msg->title, "Receiver", msg->titleLength);
@@ -128,6 +150,10 @@ void handle_query_contract_ui(void *parameters) {
 
         case ETHX_DEPOSIT:
             handle_ethx_deposit(msg, context);
+            break;
+
+        case ETHX_REQUEST_WITHDRAW:
+            handle_ethx_request_withdraw(msg, context);
             break;
 
         default:
