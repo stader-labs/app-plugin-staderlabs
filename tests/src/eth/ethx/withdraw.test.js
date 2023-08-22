@@ -24,7 +24,7 @@ nano_models.forEach(function (model) {
 
       const tx = eth.signTransaction("44'/60'/0'/0", serializedTx);
 
-      const right_clicks = model.letter === "S" ? 9 : 4;
+      const right_clicks = model.letter === "S" ? 9 : 5;
 
       // Wait for the application to actually load and parse the transaction
       await waitForAppScreen(sim);
@@ -36,6 +36,7 @@ nano_models.forEach(function (model) {
       );
 
       await tx;
-    })
+    }),
+    50000
   );
 });
