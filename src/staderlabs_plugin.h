@@ -44,8 +44,8 @@ extern const uint32_t STADERLABS_SELECTORS[NUM_SELECTORS];
 typedef struct context_t {
     // For display.
     uint8_t amount_received[INT256_LENGTH];
-    char *ticker;
-    char account_addr[ADDRESS_LENGTH];
+    const char *ticker;
+    uint8_t account_addr[ADDRESS_LENGTH];
 
     // For parsing data.
     uint8_t next_param;    // Set to be the next param we expect to parse.

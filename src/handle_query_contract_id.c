@@ -9,7 +9,7 @@ void handle_query_contract_id(void *parameters) {
 
     // For the first screen, display the plugin name.
     strlcpy(msg->name, PLUGIN_NAME, msg->nameLength);
-    char *msgVersion;
+    const char *msgVersion;
 
     // EDIT THIS: Adapt the cases by modifying the strings you pass to `strlcpy`.
     switch (context->selectorIndex) {
