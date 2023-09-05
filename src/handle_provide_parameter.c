@@ -20,7 +20,7 @@ static void handle_stake(ethPluginProvideParameter_t *msg, context_t *context) {
             break;
         // Keep this
         default:
-            handle_unsupported_param(msg, context);
+            handle_unsupported_param(msg);
             break;
     }
 }
@@ -38,7 +38,7 @@ static void handle_unstake(ethPluginProvideParameter_t *msg, context_t *context)
             break;
         // Keep this
         default:
-            handle_unsupported_param(msg, context);
+            handle_unsupported_param(msg);
             break;
     }
 }
@@ -52,7 +52,7 @@ static void handle_ethx_deposit(ethPluginProvideParameter_t *msg, context_t *con
 
         // Keep this
         default:
-            handle_unsupported_param(msg, context);
+            handle_unsupported_param(msg);
             break;
     }
 }
@@ -71,7 +71,7 @@ static void handle_ethx_request_withdraw(ethPluginProvideParameter_t *msg, conte
 
         // Keep this
         default:
-            handle_unsupported_param(msg, context);
+            handle_unsupported_param(msg);
             break;
     }
 }
