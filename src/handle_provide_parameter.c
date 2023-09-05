@@ -5,7 +5,8 @@ static void handle_amount_received(const ethPluginProvideParameter_t *msg, conte
     copy_parameter(context->amount_received, msg->parameter, sizeof(context->amount_received));
 }
 
-static void handle_unsupported_param(ethPluginProvideParameter_t *msg, const context_t *context) {
+static void handle_unsupported_param(ethPluginProvideParameter_t *msg) {
+    context_t *context = (context_t *) msg->pluginContext;
     PRINTF("Param not supported: %d\n", context->next_param);
     msg->result = ETH_PLUGIN_RESULT_ERROR;
 }
