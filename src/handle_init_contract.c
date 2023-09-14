@@ -45,6 +45,21 @@ void handle_init_contract(void *parameters) {
     // EDIT THIS: Adapt the `cases`, and set the `next_param` to be the first parameter you expect
     // to parse.
     switch (context->selectorIndex) {
+        case ETHX_DEPOSIT:
+            context->next_param = ACCOUNT_ADDR;
+            context->ticker = "ETH";
+            break;
+
+        case ETHX_REQUEST_WITHDRAW:
+            context->next_param = UNSTAKE_AMOUNT;
+            context->ticker = "ETHX";
+            break;
+
+        case ETHX_CLAIM:
+            context->next_param = UNEXPECTED_PARAMETER;
+            context->ticker = "ETH";
+            break;
+
         case ETH_MATICX_SUBMIT:
             context->next_param = STAKE_AMOUNT;
             context->ticker = "MATIC";

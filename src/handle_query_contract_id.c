@@ -9,10 +9,11 @@ void handle_query_contract_id(void *parameters) {
 
     // For the first screen, display the plugin name.
     strlcpy(msg->name, PLUGIN_NAME, msg->nameLength);
-    char *msgVersion;
+    const char *msgVersion;
 
     // EDIT THIS: Adapt the cases by modifying the strings you pass to `strlcpy`.
     switch (context->selectorIndex) {
+        case ETHX_DEPOSIT:
         case ETH_MATICX_SUBMIT:
         case POLYGON_CHILDPOOL_SWAP_MATIC_FOR_MATICX_VIA_INSTANT_POOL:
         case BSC_STAKEMANAGER_DEPOSIT:
@@ -20,6 +21,7 @@ void handle_query_contract_id(void *parameters) {
             msgVersion = "Stake";
             break;
 
+        case ETHX_REQUEST_WITHDRAW:
         case ETH_MATICX_REQUEST_WITHDRAW:
         case POLYGON_CHILDPOOL_REQUEST_MATICX_SWAP:
         case BSC_STAKEMANAGER_REQUEST_WITHDRAW:
@@ -27,6 +29,7 @@ void handle_query_contract_id(void *parameters) {
             msgVersion = "Unstake";
             break;
 
+        case ETHX_CLAIM:
         case ETH_MATICX_CLAIM_WITHDRAWAL:
         case POLYGON_CHILDPOOL_CLAIM_MATICX_SWAP:
         case BSC_STAKEMANAGER_CLAIM_WITHDRAW:

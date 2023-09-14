@@ -40,6 +40,7 @@ nano_models.forEach(function (model) {
       },
       signedPlugin,
       testNetwork
-    )
+    ),
+    20000
   );
 });
