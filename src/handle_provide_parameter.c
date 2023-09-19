@@ -43,10 +43,14 @@ static void handle_unstake(ethPluginProvideParameter_t *msg, context_t *context)
 }
 
 static void handle_ethx_deposit(ethPluginProvideParameter_t *msg, context_t *context) {
+    if (context->skip_next_param) {
+        return;
+    }
     switch (context->next_param) {
         case ACCOUNT_ADDR:
             copy_address(context->account_addr, msg->parameter, sizeof(context->account_addr));
             context->next_param = UNEXPECTED_PARAMETER;
+            context->skip_next_param = true;
             break;
 
         // Keep this
@@ -57,6 +61,9 @@ static void handle_ethx_deposit(ethPluginProvideParameter_t *msg, context_t *con
 }
 
 static void handle_ethx_request_withdraw(ethPluginProvideParameter_t *msg, context_t *context) {
+    if (context->skip_next_param) {
+        return;
+    }
     switch (context->next_param) {
         case UNSTAKE_AMOUNT:
             handle_amount_received(msg, context);
@@ -66,6 +73,7 @@ static void handle_ethx_request_withdraw(ethPluginProvideParameter_t *msg, conte
         case ACCOUNT_ADDR:
             copy_address(context->account_addr, msg->parameter, sizeof(context->account_addr));
             context->next_param = UNEXPECTED_PARAMETER;
+            context->skip_next_param = true;
             break;
 
         // Keep this
