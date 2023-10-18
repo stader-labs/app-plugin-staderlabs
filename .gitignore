@@ -5,6 +5,8 @@ bin/
 debug/
 dep/
 obj/
+tests/elfs/
+build/
 
 # Editors
 .idea/
