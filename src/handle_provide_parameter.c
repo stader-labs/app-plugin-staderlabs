@@ -98,10 +98,12 @@ void handle_provide_parameter(void *parameters) {
 
     // EDIT THIS: adapt the cases and the names of the functions.
     switch (context->selectorIndex) {
+        case ETHX_DEPOSIT_LEGACY:
         case ETHX_DEPOSIT:
             handle_ethx_deposit(msg, context);
             break;
 
+        case ETHX_REQUEST_WITHDRAW_LEGACY:
         case ETHX_REQUEST_WITHDRAW:
             handle_ethx_request_withdraw(msg, context);
             break;

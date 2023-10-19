@@ -150,10 +150,12 @@ void handle_query_contract_ui(void *parameters) {
             break;
 
         case ETHX_DEPOSIT:
+        case ETHX_DEPOSIT_LEGACY:
             handle_ethx_deposit(msg, context);
             break;
 
         case ETHX_REQUEST_WITHDRAW:
+        case ETHX_REQUEST_WITHDRAW_LEGACY:
             handle_ethx_request_withdraw(msg, context);
             break;
 

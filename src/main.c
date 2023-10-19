@@ -118,6 +118,18 @@ static const uint32_t ETHX_REQUEST_WITHDRAW_SELECTOR = 0x1f7ec122;
 // Selector: 0x379607f5
 static const uint32_t ETHX_CLAIM_SELECTOR = 0x379607f5;
 
+// Network: Ethereum
+// Contract: StaderStakePoolsManager
+// Method: function deposit(address _receiver)
+// Selector: 0xf340fa01
+static const uint32_t ETHX_DEPOSIT_LEGACY_SELECTOR = 0xf340fa01;
+
+// Network: Ethereum
+// Contract: UserWithdrawalManager
+// Method: function requestWithdraw(uint256 _ethXAmount, address _owner)
+// Selector: 0xccc143b8
+static const uint32_t ETHX_REQUEST_WITHDRAW_LEGACY_SELECTOR = 0xccc143b8;
+
 // Array of all the different staderlabs selectors. Make sure this follows the same order as the
 // enum defined in `staderlabs_plugin.h`
 const uint32_t STADERLABS_SELECTORS[NUM_SELECTORS] = {
@@ -136,6 +148,8 @@ const uint32_t STADERLABS_SELECTORS[NUM_SELECTORS] = {
     ETHX_DEPOSIT_SELECTOR,
     ETHX_REQUEST_WITHDRAW_SELECTOR,
     ETHX_CLAIM_SELECTOR,
+    ETHX_DEPOSIT_LEGACY_SELECTOR,
+    ETHX_REQUEST_WITHDRAW_LEGACY_SELECTOR,
 };
 
 // Function to dispatch calls from the ethereum app.

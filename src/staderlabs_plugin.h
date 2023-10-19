@@ -5,7 +5,7 @@
 #include <string.h>
 
 // Number of selectors defined in this plugin. Should match the enum `selector_t`.
-#define NUM_SELECTORS 15
+#define NUM_SELECTORS 17
 
 // Name of the plugin.
 #define PLUGIN_NAME "Staderlabs"
@@ -28,6 +28,8 @@ typedef enum {
     ETHX_DEPOSIT,
     ETHX_REQUEST_WITHDRAW,
     ETHX_CLAIM,
+    ETHX_DEPOSIT_LEGACY,
+    ETHX_REQUEST_WITHDRAW_LEGACY,
 } selector_t;
 
 // Enumeration used to parse the smart contract data.
