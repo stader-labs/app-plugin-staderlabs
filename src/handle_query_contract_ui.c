@@ -159,6 +159,7 @@ void handle_query_contract_ui(ethQueryContractUI_t *msg) {
         case ETHX_REQUEST_WITHDRAW:
         case ETHX_REQUEST_WITHDRAW_LEGACY:
             ret = handle_ethx_request_withdraw(msg, context);
+            break;
 
         default:
             PRINTF("Selector index: %d not supported\n", context->selectorIndex);
