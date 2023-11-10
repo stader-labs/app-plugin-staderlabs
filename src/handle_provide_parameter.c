@@ -5,7 +5,8 @@ static void handle_amount_received(const ethPluginProvideParameter_t *msg, conte
     copy_parameter(context->amount_received, msg->parameter, sizeof(context->amount_received));
 }
 
-static void handle_unsupported_param(ethPluginProvideParameter_t *msg, const context_t *context) {
+static void handle_unsupported_param(ethPluginProvideParameter_t *msg) {
+    context_t *context = (context_t *) msg->pluginContext;
     PRINTF("Param not supported: %d\n", context->next_param);
     msg->result = ETH_PLUGIN_RESULT_ERROR;
 }
@@ -19,7 +20,7 @@ static void handle_stake(ethPluginProvideParameter_t *msg, context_t *context) {
             break;
         // Keep this
         default:
-            handle_unsupported_param(msg, context);
+            handle_unsupported_param(msg);
             break;
     }
 }
@@ -37,7 +38,7 @@ static void handle_unstake(ethPluginProvideParameter_t *msg, context_t *context)
             break;
         // Keep this
         default:
-            handle_unsupported_param(msg, context);
+            handle_unsupported_param(msg);
             break;
     }
 }
@@ -55,7 +56,7 @@ static void handle_ethx_deposit(ethPluginProvideParameter_t *msg, context_t *con
 
         // Keep this
         default:
-            handle_unsupported_param(msg, context);
+            handle_unsupported_param(msg);
             break;
     }
 }
@@ -78,7 +79,7 @@ static void handle_ethx_request_withdraw(ethPluginProvideParameter_t *msg, conte
 
         // Keep this
         default:
-            handle_unsupported_param(msg, context);
+            handle_unsupported_param(msg);
             break;
     }
 }
