@@ -30,10 +30,11 @@ From the Docker console
 
 ```shell
 #build the staderlabs plugin
+cd app-plugin-staderlabs
 make
 
-#build the ".elf" files for testing
-cd app-plugin-staderlabs/tests
+#go to tests folder inside staderlabs plugin and build the ".elf" files for testing
+cd tests
 ./build_local_test_elfs.sh
 ```
 
