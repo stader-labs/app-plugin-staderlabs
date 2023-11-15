@@ -95,13 +95,14 @@ static const uint32_t FTM_WITHDRAW_SELECTOR = 0x441a3e70;
 
 // Network: Ethereum
 // Contract: StaderStakePoolsManager
-// Method: function deposit(address _receiver)
+// Method: function deposit(address _receiver, string calldata _referralId)
 // Selector: 0xb7482509
 static const uint32_t ETHX_DEPOSIT_SELECTOR = 0xb7482509;
 
 // Network: Ethereum
 // Contract: UserWithdrawalManager
-// Method: function requestWithdraw(uint256 _ethXAmount, address _owner)
+// Method:
+// function requestWithdraw(uint256 _ethXAmount, address _owner, string calldata _referralId)
 // Selector: 0x1f7ec122
 static const uint32_t ETHX_REQUEST_WITHDRAW_SELECTOR = 0x1f7ec122;
 
