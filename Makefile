@@ -30,7 +30,7 @@ APPNAME = "Staderlabs"
 # Application version
 APPVERSION_M = 1
 APPVERSION_N = 1
-APPVERSION_P = 0
+APPVERSION_P = 1
 APPVERSION = "$(APPVERSION_M).$(APPVERSION_N).$(APPVERSION_P)"
 
 # Initialize plugin SDK submodule if needed
