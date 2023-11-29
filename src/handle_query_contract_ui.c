@@ -7,9 +7,8 @@ static bool set_native_token_stake_ui(ethQueryContractUI_t *msg, context_t *cont
     const uint8_t *native_token_amount = msg->pluginSharedRO->txContent->value.value;
     uint8_t native_token_amount_size = msg->pluginSharedRO->txContent->value.length;
 
-    char ftm_ticker[MAX_TICKER_LEN] = "FTM";
-    if (memcmp(msg->network_ticker, ftm_ticker, 3) == 0) {
-        context->ticker = ftm_ticker;
+    if (memcmp(msg->network_ticker, "FTM", 3) == 0) {
+        context->ticker = "FTM";
     }
 
     // Converts the uint256 number located in `native_token_amount` to its string representation and
@@ -152,10 +151,12 @@ void handle_query_contract_ui(ethQueryContractUI_t *msg) {
             break;
 
         case ETHX_DEPOSIT:
+        case ETHX_DEPOSIT_LEGACY:
             ret = handle_ethx_deposit(msg, context);
             break;
 
         case ETHX_REQUEST_WITHDRAW:
+        case ETHX_REQUEST_WITHDRAW_LEGACY:
             ret = handle_ethx_request_withdraw(msg, context);
             break;
 
