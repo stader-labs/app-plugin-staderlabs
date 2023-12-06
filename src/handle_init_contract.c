@@ -106,6 +106,12 @@ void handle_init_contract(ethPluginInitContract_t *msg) {
             context->ticker = "FTM";
             break;
 
+        case ETHX_MERKLE_CLAIM:
+            context->skip_next_param = true;
+            context->next_param = ACCOUNT_ADDR;
+            context->ticker = "SD";
+            break;
+
         // Keep this
         default:
             PRINTF("Missing selectorIndex: %d\n", context->selectorIndex);
