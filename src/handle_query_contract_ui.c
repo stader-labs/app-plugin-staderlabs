@@ -120,13 +120,12 @@ static bool handle_boost_rewards_claim(ethQueryContractUI_t *msg, context_t *con
     memset(msg->msg, 0, msg->msgLength);
     switch (msg->screenIndex) {
         case 0:
-        strlcpy(msg->title, "Receiver", msg->titleLength);
-            ret = set_account_addr_ui(msg, context);
-            break;
-            
-        case 1:
             ret = set_stake_ui(msg, context); // sets title to "Stake" and msg to token amount
             strlcpy(msg->title, "Claim", msg->titleLength); // update the title to "Claim"
+            break;
+        case 1:
+            strlcpy(msg->title, "Receiver", msg->titleLength);
+            ret = set_account_addr_ui(msg, context);
             break;
 
         default:
