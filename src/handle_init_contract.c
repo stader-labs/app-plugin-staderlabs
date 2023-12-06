@@ -107,8 +107,7 @@ void handle_init_contract(ethPluginInitContract_t *msg) {
             break;
 
         case ETHX_BOOST_REWARDS_CLAIM:
-            context->skip_next_param = true;
-            context->next_param = ACCOUNT_ADDR;
+            context->next_param = UNUSED_PARAM;
             context->ticker = "SD";
             break;
 

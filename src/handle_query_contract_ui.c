@@ -113,7 +113,7 @@ static bool handle_ethx_request_withdraw(ethQueryContractUI_t *msg, context_t *c
     return ret;
 }
 
-static bool handle_ethx_boost_rewards_claim(ethQueryContractUI_t *msg, context_t *context) {
+static bool handle_boost_rewards_claim(ethQueryContractUI_t *msg, context_t *context) {
     bool ret = false;
 
     memset(msg->title, 0, msg->titleLength);

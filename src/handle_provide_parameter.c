@@ -92,10 +92,12 @@ static void handle_boost_rewards_claim(ethPluginProvideParameter_t *msg, context
         return;
     }
     switch (context->next_param) {
+        case UNUSED_PARAM:
+            context->next_param = ACCOUNT_ADDR;
+            break;
         case ACCOUNT_ADDR:
             copy_address(context->account_addr, msg->parameter, sizeof(context->account_addr));
             context->next_param = TOKEN_AMOUNT;
-            context->skip_next_param = false;
             break;
 
         case TOKEN_AMOUNT:

@@ -39,6 +39,7 @@ typedef enum {
     UNSTAKE_AMOUNT,
     TOKEN_AMOUNT,
     ACCOUNT_ADDR,
+    UNUSED_PARAM,
     UNEXPECTED_PARAMETER,
 } parameter;
 
