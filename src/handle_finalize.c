@@ -5,7 +5,9 @@ void handle_finalize(ethPluginFinalize_t *msg) {
 
     switch (context->selectorIndex) {
         case ETHX_DEPOSIT:
+        case ETHX_DEPOSIT_LEGACY:
         case ETHX_REQUEST_WITHDRAW:
+        case ETHX_REQUEST_WITHDRAW_LEGACY:
             msg->numScreens = 2;
             break;
 
