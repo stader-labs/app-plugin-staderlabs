@@ -128,7 +128,7 @@ static const uint32_t ETHX_REQUEST_WITHDRAW_LEGACY_SELECTOR = 0xccc143b8;
 // Contract: MerkleDistributor
 // Method: function claim(uint256 index, address account, uint256 amount, bytes32[] calldata merkleProof)
 // Selector: 0x2e7ba6ef
-static const uint32_t ETHX_MERKLE_CLAIM_SELECTOR = 0x2e7ba6ef;
+static const uint32_t ETHX_BOOST_REWARDS_CLAIM_SELECTOR = 0x2e7ba6ef;
 
 // Array of all the different staderlabs selectors. Make sure this follows the same order as the
 // enum defined in `staderlabs_plugin.h`
@@ -150,5 +150,5 @@ const uint32_t STADERLABS_SELECTORS[NUM_SELECTORS] = {
     ETHX_CLAIM_SELECTOR,
     ETHX_DEPOSIT_LEGACY_SELECTOR,
     ETHX_REQUEST_WITHDRAW_LEGACY_SELECTOR,
-    ETHX_MERKLE_CLAIM_SELECTOR,
+    ETHX_BOOST_REWARDS_CLAIM_SELECTOR,
 };

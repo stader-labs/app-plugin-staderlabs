@@ -30,7 +30,7 @@ typedef enum {
     ETHX_CLAIM,
     ETHX_DEPOSIT_LEGACY,
     ETHX_REQUEST_WITHDRAW_LEGACY,
-    ETHX_MERKLE_CLAIM,
+    ETHX_BOOST_REWARDS_CLAIM,
 } selector_t;
 
 // Enumeration used to parse the smart contract data.

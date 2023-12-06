@@ -106,7 +106,7 @@ void handle_init_contract(ethPluginInitContract_t *msg) {
             context->ticker = "FTM";
             break;
 
-        case ETHX_MERKLE_CLAIM:
+        case ETHX_BOOST_REWARDS_CLAIM:
             context->skip_next_param = true;
             context->next_param = ACCOUNT_ADDR;
             context->ticker = "SD";

@@ -87,7 +87,7 @@ static void handle_ethx_request_withdraw(ethPluginProvideParameter_t *msg, conte
     }
 }
 
-static void handle_merkle_claim(ethPluginProvideParameter_t *msg, context_t *context) {
+static void handle_boost_rewards_claim(ethPluginProvideParameter_t *msg, context_t *context) {
     if (context->skip_next_param) {
         return;
     }
@@ -157,8 +157,8 @@ void handle_provide_parameter(ethPluginProvideParameter_t *msg) {
             context->next_param = UNEXPECTED_PARAMETER;
             break;
         
-        case ETHX_MERKLE_CLAIM:
-            handle_merkle_claim(msg, context);
+        case ETHX_BOOST_REWARDS_CLAIM:
+            handle_boost_rewards_claim(msg, context);
             break;
 
         default:
