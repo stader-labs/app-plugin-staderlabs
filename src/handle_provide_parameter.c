@@ -158,7 +158,7 @@ void handle_provide_parameter(ethPluginProvideParameter_t *msg) {
         case FTM_WITHDRAW:
             context->next_param = UNEXPECTED_PARAMETER;
             break;
-        
+
         case ETHX_BOOST_REWARDS_CLAIM:
             handle_boost_rewards_claim(msg, context);
             break;
