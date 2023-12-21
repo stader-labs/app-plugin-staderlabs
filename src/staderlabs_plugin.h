@@ -48,16 +48,16 @@ extern const uint32_t STADERLABS_SELECTORS[NUM_SELECTORS];
 // Shared global memory with Ethereum app. Must be at most 5 * 32 bytes.
 typedef struct context_t {
     // For display.
-    uint8_t amount_received[INT256_LENGTH]; // 32 bytes
-    const char *ticker; // 8 bytes
-    uint8_t account_addr[ADDRESS_LENGTH]; // 20 bytes
+    uint8_t amount_received[INT256_LENGTH];  // 32 bytes
+    const char *ticker;                      // 8 bytes
+    uint8_t account_addr[ADDRESS_LENGTH];    // 20 bytes
 
     // For parsing data.
     uint8_t next_param;    // Set to be the next param we expect to parse. // 1 byte
     bool skip_next_param;  // flag to skip next param while parsing. // 1 byte
 
     // For both parsing and display.
-    selector_t selectorIndex; // 8 bytes
+    selector_t selectorIndex;  // 8 bytes
 } context_t;
 
 // Piece of code that will check that the above structure is not bigger than 5 * 32. Do not remove

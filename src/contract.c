@@ -126,7 +126,8 @@ static const uint32_t ETHX_REQUEST_WITHDRAW_LEGACY_SELECTOR = 0xccc143b8;
 
 // Network: Ethereum
 // Contract: MerkleDistributor
-// Method: function claim(uint256 index, address account, uint256 amount, bytes32[] calldata merkleProof)
+// Method: function claim(uint256 index, address account, uint256 amount, bytes32[] calldata
+// merkleProof) 
 // Selector: 0x2e7ba6ef
 static const uint32_t ETHX_BOOST_REWARDS_CLAIM_SELECTOR = 0x2e7ba6ef;
 
