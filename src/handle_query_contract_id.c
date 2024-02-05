@@ -38,6 +38,10 @@ void handle_query_contract_id(ethQueryContractID_t *msg) {
             msgVersion = "Claim";
             break;
 
+        case ETHX_BOOST_REWARDS_CLAIM:
+            msgVersion = "Claim SD Rewards";
+            break;
+
         default:
             PRINTF("Selector index: %d not supported\n", context->selectorIndex);
             msg->result = ETH_PLUGIN_RESULT_ERROR;

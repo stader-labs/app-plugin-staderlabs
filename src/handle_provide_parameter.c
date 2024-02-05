@@ -87,6 +87,32 @@ static void handle_ethx_request_withdraw(ethPluginProvideParameter_t *msg, conte
     }
 }
 
+static void handle_boost_rewards_claim(ethPluginProvideParameter_t *msg, context_t *context) {
+    if (context->skip_next_param) {
+        return;
+    }
+    switch (context->next_param) {
+        case UNUSED_PARAM:
+            context->next_param = ACCOUNT_ADDR;
+            break;
+        case ACCOUNT_ADDR:
+            copy_address(context->account_addr, msg->parameter, sizeof(context->account_addr));
+            context->next_param = TOKEN_AMOUNT;
+            break;
+
+        case TOKEN_AMOUNT:
+            handle_amount_received(msg, context);
+            context->next_param = UNEXPECTED_PARAMETER;
+            context->skip_next_param = true;
+            break;
+
+        // Keep this
+        default:
+            handle_unsupported_param(msg);
+            break;
+    }
+}
+
 void handle_provide_parameter(ethPluginProvideParameter_t *msg) {
     context_t *context = (context_t *) msg->pluginContext;
     // We use `%.*H`: it's a utility function to print bytes. You first give
@@ -131,6 +157,10 @@ void handle_provide_parameter(ethPluginProvideParameter_t *msg) {
         case BSC_STAKEMANAGER_CLAIM_WITHDRAW:
         case FTM_WITHDRAW:
             context->next_param = UNEXPECTED_PARAMETER;
+            break;
+
+        case ETHX_BOOST_REWARDS_CLAIM:
+            handle_boost_rewards_claim(msg, context);
             break;
 
         default:

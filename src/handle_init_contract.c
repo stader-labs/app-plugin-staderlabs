@@ -106,6 +106,11 @@ void handle_init_contract(ethPluginInitContract_t *msg) {
             context->ticker = "FTM";
             break;
 
+        case ETHX_BOOST_REWARDS_CLAIM:
+            context->next_param = UNUSED_PARAM;
+            context->ticker = "SD";
+            break;
+
         // Keep this
         default:
             PRINTF("Missing selectorIndex: %d\n", context->selectorIndex);

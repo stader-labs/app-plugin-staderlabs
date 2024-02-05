@@ -58,6 +58,17 @@
           "plugin": "Staderlabs"
         }
       }
+    },
+    {
+      "address": "0xefe048aded507b21cca84d295135652ef49cd04e",
+      "contractName": "MerkleDistributor",
+      "selectors": {
+        "0x2e7ba6ef": {
+          "erc20OfInterest": [],
+          "method": "claim",
+          "plugin": "Staderlabs"
+        }
+      }
     }
   ],
   "name": "Staderlabs"
