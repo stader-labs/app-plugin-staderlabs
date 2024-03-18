@@ -126,6 +126,7 @@ void handle_query_contract_ui(ethQueryContractUI_t *msg) {
 
     switch (context->selectorIndex) {
         case ETH_MATICX_SUBMIT:
+        case KELP_LST_DEPOSIT:
             ret = set_stake_ui(msg, context);
             break;
 

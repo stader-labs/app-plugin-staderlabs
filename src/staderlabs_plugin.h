@@ -42,7 +42,9 @@
     X(ETHX_REQUEST_WITHDRAW, 0x1f7ec122)                                    \
     X(ETHX_CLAIM, 0x379607f5)                                               \
     X(ETHX_DEPOSIT_LEGACY, 0xf340fa01)                                      \
-    X(ETHX_REQUEST_WITHDRAW_LEGACY, 0xccc143b8)
+    X(ETHX_REQUEST_WITHDRAW_LEGACY, 0xccc143b8)                             \
+    X(KELP_LST_DEPOSIT, 0xc3ae1766)                                         \
+    X(KELP_ETH_DEPOSIT, 0x72c51c0b)
 
 // Xmacro helpers to define the enum and map
 // Do not modify !
@@ -66,6 +68,7 @@ typedef enum {
     STAKE_AMOUNT = 0,
     UNSTAKE_AMOUNT,
     ACCOUNT_ADDR,
+    TOKEN_ADDR,
     UNEXPECTED_PARAMETER,
 } parameter;
 
@@ -75,8 +78,9 @@ typedef enum {
 typedef struct context_s {
     // For display.
     uint8_t amount_received[INT256_LENGTH];
-    const char *ticker;
     uint8_t account_addr[ADDRESS_LENGTH];
+    uint8_t token_addr[ADDRESS_LENGTH];
+    char ticker[MAX_TICKER_LEN];
 
     // For parsing data.
     uint8_t next_param;    // Set to be the next param we expect to parse.

@@ -38,6 +38,11 @@ void handle_query_contract_id(ethQueryContractID_t *msg) {
             msgVersion = "Claim";
             break;
 
+        case KELP_LST_DEPOSIT:
+            strlcpy(msg->name, "Kelp", msg->nameLength);
+            msgVersion = "Stake";
+            break;
+
         default:
             PRINTF("Selector index: %d not supported\n", context->selectorIndex);
             msg->result = ETH_PLUGIN_RESULT_ERROR;

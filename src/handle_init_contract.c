@@ -105,6 +105,10 @@ void handle_init_contract(ethPluginInitContract_t *msg) {
             context->ticker = "FTM";
             break;
 
+        case KELP_LST_DEPOSIT:
+            context->next_param = TOKEN_ADDR;
+            break;
+
         // Keep this
         default:
             PRINTF("Missing selectorIndex: %d\n", context->selectorIndex);

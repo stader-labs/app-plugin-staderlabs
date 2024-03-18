@@ -87,6 +87,29 @@ static void handle_ethx_request_withdraw(ethPluginProvideParameter_t *msg, conte
     }
 }
 
+static void handle_kelp_lst_deposit(ethPluginProvideParameter_t *msg, context_t *context) {
+    if (context->skip_next_param) {
+        return;
+    }
+
+    switch (context->next_param) {
+        case TOKEN_ADDR:
+            copy_address(context->token_addr, msg->parameter, sizeof(context->token_addr));
+            context->next_param = STAKE_AMOUNT;
+            break;
+
+        case STAKE_AMOUNT:
+            handle_amount_received(msg, context);
+            context->next_param = UNEXPECTED_PARAMETER;
+            context->skip_next_param = true;
+            break;
+
+        // Keep this
+        default:
+            handle_unsupported_param(msg);
+            break;
+    }
+}
 void handle_provide_parameter(ethPluginProvideParameter_t *msg) {
     context_t *context = (context_t *) msg->pluginContext;
     // We use `%.*H`: it's a utility function to print bytes. You first give
@@ -131,10 +154,9 @@ void handle_provide_parameter(ethPluginProvideParameter_t *msg) {
         case BSC_STAKEMANAGER_CLAIM_WITHDRAW:
         case FTM_WITHDRAW:
             context->next_param = UNEXPECTED_PARAMETER;
-            break;
+            break
 
-        default:
-            PRINTF("Selector Index not supported: %d\n", context->selectorIndex);
+                default : PRINTF("Selector Index not supported: %d\n", context->selectorIndex);
             msg->result = ETH_PLUGIN_RESULT_ERROR;
             break;
     }
