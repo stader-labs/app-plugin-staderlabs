@@ -140,7 +140,8 @@ void handle_provide_parameter(ethPluginProvideParameter_t *msg) {
 
         case ETH_MATICX_REQUEST_WITHDRAW:
         case POLYGON_CHILDPOOL_REQUEST_MATICX_SWAP:
-        case BSC_STAKEMANAGER_REQUEST_WITHDRAW:
+        // case BSC_STAKEMANAGER_REQUEST_WITHDRAW:
+        // the selector matches with `ETH_MATICX_REQUEST_WITHDRAW`
         case FTM_UNDELEGATE:
             handle_unstake(msg, context);
             break;
@@ -150,13 +151,17 @@ void handle_provide_parameter(ethPluginProvideParameter_t *msg) {
         case POLYGON_CHILDPOOL_SWAP_MATIC_FOR_MATICX_VIA_INSTANT_POOL:
         case POLYGON_CHILDPOOL_CLAIM_MATICX_SWAP:
         case BSC_STAKEMANAGER_DEPOSIT:
-        case FTM_DEPOSIT:
+        // case FTM_DEPOSIT: // the selector matches with `BSC_STAKEMANAGER_DEPOSIT`
         case BSC_STAKEMANAGER_CLAIM_WITHDRAW:
         case FTM_WITHDRAW:
             context->next_param = UNEXPECTED_PARAMETER;
-            break
+            break;
+        case KELP_LST_DEPOSIT:
+            handle_kelp_lst_deposit(msg, context);
+            break;
 
-                default : PRINTF("Selector Index not supported: %d\n", context->selectorIndex);
+        default:
+            PRINTF("Selector Index not supported: %d\n", context->selectorIndex);
             msg->result = ETH_PLUGIN_RESULT_ERROR;
             break;
     }

@@ -7,18 +7,15 @@ static bool set_native_token_stake_ui(ethQueryContractUI_t *msg, context_t *cont
     const uint8_t *native_token_amount = msg->pluginSharedRO->txContent->value.value;
     uint8_t native_token_amount_size = msg->pluginSharedRO->txContent->value.length;
 
-    if (memcmp(msg->network_ticker, "FTM", 3) == 0) {
-        context->ticker = "FTM";
-    }
-
     // Converts the uint256 number located in `native_token_amount` to its string representation and
     // copies this to `msg->msg`.
-    return amountToString(native_token_amount,
-                          native_token_amount_size,
-                          WEI_TO_ETHER,
-                          context->ticker,
-                          msg->msg,
-                          msg->msgLength);
+    return amountToString(
+        native_token_amount,
+        native_token_amount_size,
+        WEI_TO_ETHER,
+        msg->network_ticker,  // token ticker is same as network ticker for native token staking
+        msg->msg,
+        msg->msgLength);
 }
 
 static bool set_stake_ui(ethQueryContractUI_t *msg, const context_t *context) {
@@ -35,9 +32,8 @@ static bool set_stake_ui(ethQueryContractUI_t *msg, const context_t *context) {
 static bool set_unstake_ui(ethQueryContractUI_t *msg, context_t *context) {
     strlcpy(msg->title, "Unstake", msg->titleLength);
 
-    char bsc_ticker[MAX_TICKER_LEN] = "BNB";
-    if (memcmp(msg->network_ticker, bsc_ticker, 3) == 0) {
-        context->ticker = "BNBX";
+    if (memcmp(msg->network_ticker, "BNB", 3) == 0) {
+        strlcpy(context->ticker, "BNBX", sizeof(context->ticker));
     }
 
     return amountToString(context->amount_received,
@@ -132,7 +128,8 @@ void handle_query_contract_ui(ethQueryContractUI_t *msg) {
 
         case ETH_MATICX_REQUEST_WITHDRAW:
         case POLYGON_CHILDPOOL_REQUEST_MATICX_SWAP:
-        case BSC_STAKEMANAGER_REQUEST_WITHDRAW:
+        // case BSC_STAKEMANAGER_REQUEST_WITHDRAW:
+        // the selector matches with `ETH_MATICX_REQUEST_WITHDRAW`
         case FTM_UNDELEGATE:
             ret = set_unstake_ui(msg, context);
             break;
@@ -146,8 +143,8 @@ void handle_query_contract_ui(ethQueryContractUI_t *msg) {
             break;
 
         case POLYGON_CHILDPOOL_SWAP_MATIC_FOR_MATICX_VIA_INSTANT_POOL:
+        // case FTM_DEPOSIT: // the selector matches with `BSC_STAKEMANAGER_DEPOSIT`
         case BSC_STAKEMANAGER_DEPOSIT:
-        case FTM_DEPOSIT:
             ret = set_native_token_stake_ui(msg, context);
             break;
 
