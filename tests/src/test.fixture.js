@@ -39,12 +39,6 @@ const nano_models: DeviceModel[] = [
     eth_path: NANOS_ETH_PATH,
   },
   {
-    name: "nanosp",
-    letter: "SP",
-    path: NANOSP_PLUGIN_PATH,
-    eth_path: NANOSP_ETH_PATH,
-  },
-  {
     name: "nanox",
     letter: "X",
     path: NANOX_PLUGIN_PATH,
