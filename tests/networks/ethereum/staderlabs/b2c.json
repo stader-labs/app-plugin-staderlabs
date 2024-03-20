@@ -58,6 +58,24 @@
           "plugin": "Staderlabs"
         }
       }
+    },
+    {
+      "address": "0x036676389e48133b63a802f8635ad39e752d375d",
+      "contractName": "LRTDepositPool",
+      "selectors": {
+        "0xc3ae1766": {
+          "erc20OfInterest": [
+            "asset"
+          ],
+          "method": "depositAsset",
+          "plugin": "Staderlabs"
+        },
+        "0x72c51c0b": {
+          "erc20OfInterest": [],
+          "method": "depositETH",
+          "plugin": "Staderlabs"
+        }
+      }
     }
   ],
   "name": "Staderlabs"
