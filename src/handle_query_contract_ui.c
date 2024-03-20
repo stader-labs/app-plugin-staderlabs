@@ -142,6 +142,7 @@ void handle_query_contract_ui(ethQueryContractUI_t *msg) {
             ret = set_claim_ui(msg, context);
             break;
 
+        case KELP_ETH_DEPOSIT:
         case POLYGON_CHILDPOOL_SWAP_MATIC_FOR_MATICX_VIA_INSTANT_POOL:
         // case FTM_DEPOSIT: // the selector matches with `BSC_STAKEMANAGER_DEPOSIT`
         case BSC_STAKEMANAGER_DEPOSIT:

@@ -146,6 +146,7 @@ void handle_provide_parameter(ethPluginProvideParameter_t *msg) {
             handle_unstake(msg, context);
             break;
 
+        case KELP_ETH_DEPOSIT:
         case ETHX_CLAIM:
         case ETH_MATICX_CLAIM_WITHDRAWAL:
         case POLYGON_CHILDPOOL_SWAP_MATIC_FOR_MATICX_VIA_INSTANT_POOL:

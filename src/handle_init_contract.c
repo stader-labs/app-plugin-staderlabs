@@ -105,6 +105,10 @@ void handle_init_contract(ethPluginInitContract_t *msg) {
             context->next_param = TOKEN_ADDR;
             break;
 
+        case KELP_ETH_DEPOSIT:
+            context->next_param = UNEXPECTED_PARAMETER;
+            break;
+
         // Keep this
         default:
             PRINTF("Missing selectorIndex: %d\n", context->selectorIndex);
