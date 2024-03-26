@@ -1,7 +1,7 @@
 #include <stdbool.h>
 #include "staderlabs_plugin.h"
 
-static bool set_native_token_stake_ui(ethQueryContractUI_t *msg, context_t *context) {
+static bool set_native_token_stake_ui(ethQueryContractUI_t *msg) {
     strlcpy(msg->title, "Stake", msg->titleLength);
 
     const uint8_t *native_token_amount = msg->pluginSharedRO->txContent->value.value;
@@ -76,7 +76,7 @@ static bool handle_ethx_deposit(ethQueryContractUI_t *msg, context_t *context) {
 
     switch (msg->screenIndex) {
         case 0:
-            ret = set_native_token_stake_ui(msg, context);
+            ret = set_native_token_stake_ui(msg);
             break;
         case 1:
             strlcpy(msg->title, "Receiver", msg->titleLength);
@@ -146,7 +146,7 @@ void handle_query_contract_ui(ethQueryContractUI_t *msg) {
         case POLYGON_CHILDPOOL_SWAP_MATIC_FOR_MATICX_VIA_INSTANT_POOL:
         // case FTM_DEPOSIT: // the selector matches with `BSC_STAKEMANAGER_DEPOSIT`
         case BSC_STAKEMANAGER_DEPOSIT:
-            ret = set_native_token_stake_ui(msg, context);
+            ret = set_native_token_stake_ui(msg);
             break;
 
         case ETHX_DEPOSIT:
