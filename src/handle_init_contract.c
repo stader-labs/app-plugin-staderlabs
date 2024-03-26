@@ -1,14 +1,5 @@
+#include "plugin_utils.h"
 #include "staderlabs_plugin.h"
-
-static int find_selector(uint32_t selector, const uint32_t *selectors, size_t n, selector_t *out) {
-    for (selector_t i = 0; i < n; i++) {
-        if (selector == selectors[i]) {
-            *out = i;
-            return 0;
-        }
-    }
-    return -1;
-}
 
 // Called once to init.
 void handle_init_contract(ethPluginInitContract_t *msg) {
@@ -32,9 +23,17 @@ void handle_init_contract(ethPluginInitContract_t *msg) {
     // Initialize the context (to 0).
     memset(context, 0, sizeof(*context));
 
-    uint32_t selector = U4BE(msg->selector, 0);
-    if (find_selector(selector, STADERLABS_SELECTORS, NUM_SELECTORS, &context->selectorIndex)) {
+    size_t index;
+    if (!find_selector(U4BE(msg->selector, 0), SELECTORS, SELECTOR_COUNT, &index)) {
+        PRINTF("Error: selector not found!\n");
         msg->result = ETH_PLUGIN_RESULT_UNAVAILABLE;
+        return;
+    }
+    context->selectorIndex = index;
+    // check for overflow
+    if ((size_t) context->selectorIndex != index) {
+        PRINTF("Error: overflow detected on selector index!\n");
+        msg->result = ETH_PLUGIN_RESULT_ERROR;
         return;
     }
 
@@ -45,65 +44,69 @@ void handle_init_contract(ethPluginInitContract_t *msg) {
         case ETHX_DEPOSIT_LEGACY:
         case ETHX_DEPOSIT:
             context->next_param = ACCOUNT_ADDR;
-            context->ticker = "ETH";
             break;
 
         case ETHX_REQUEST_WITHDRAW_LEGACY:
         case ETHX_REQUEST_WITHDRAW:
             context->next_param = UNSTAKE_AMOUNT;
-            context->ticker = "ETHX";
+            strlcpy(context->ticker, "ETHX", sizeof(context->ticker));
             break;
 
         case ETHX_CLAIM:
             context->next_param = UNEXPECTED_PARAMETER;
-            context->ticker = "ETH";
+            strlcpy(context->ticker, "ETH", sizeof(context->ticker));
             break;
 
         case ETH_MATICX_SUBMIT:
             context->next_param = STAKE_AMOUNT;
-            context->ticker = "MATIC";
+            strlcpy(context->ticker, "MATIC", sizeof(context->ticker));
             break;
 
         case POLYGON_CHILDPOOL_SWAP_MATIC_FOR_MATICX_VIA_INSTANT_POOL:
             context->next_param = UNEXPECTED_PARAMETER;
-            context->ticker = "MATIC";
             break;
 
         case BSC_STAKEMANAGER_DEPOSIT:
-        // the below case is of no use, as the selector matches with `BSC_STAKEMANAGER_DEPOSIT`
-        case FTM_DEPOSIT:
+            // case FTM_DEPOSIT: // the selector matches with `BSC_STAKEMANAGER_DEPOSIT`
             context->next_param = UNEXPECTED_PARAMETER;
-            context->ticker = "BNB";
             break;
 
         case ETH_MATICX_REQUEST_WITHDRAW:
-        // the below case is of no use, as the selector matches with `ETH_MATICX_REQUEST_WITHDRAW`
-        case BSC_STAKEMANAGER_REQUEST_WITHDRAW:
+        // case BSC_STAKEMANAGER_REQUEST_WITHDRAW:
+        // the selector matches with `ETH_MATICX_REQUEST_WITHDRAW`
         case POLYGON_CHILDPOOL_REQUEST_MATICX_SWAP:
             context->next_param = UNSTAKE_AMOUNT;
-            context->ticker = "MATICX";
+            strlcpy(context->ticker, "MATICX", sizeof(context->ticker));
             break;
 
         case FTM_UNDELEGATE:
             context->next_param = UNSTAKE_AMOUNT;
-            context->ticker = "FTMX";
+            strlcpy(context->ticker, "FTMX", sizeof(context->ticker));
             context->skip_next_param = true;
             break;
 
         case ETH_MATICX_CLAIM_WITHDRAWAL:
         case POLYGON_CHILDPOOL_CLAIM_MATICX_SWAP:
             context->next_param = UNEXPECTED_PARAMETER;
-            context->ticker = "MATIC";
+            strlcpy(context->ticker, "MATIC", sizeof(context->ticker));
             break;
 
         case BSC_STAKEMANAGER_CLAIM_WITHDRAW:
             context->next_param = UNEXPECTED_PARAMETER;
-            context->ticker = "BNB";
+            strlcpy(context->ticker, "BNB", sizeof(context->ticker));
             break;
 
         case FTM_WITHDRAW:
             context->next_param = UNEXPECTED_PARAMETER;
-            context->ticker = "FTM";
+            strlcpy(context->ticker, "FTM", sizeof(context->ticker));
+            break;
+
+        case KELP_LST_DEPOSIT:
+            context->next_param = TOKEN_ADDR;
+            break;
+
+        case KELP_ETH_DEPOSIT:
+            context->next_param = UNEXPECTED_PARAMETER;
             break;
 
         // Keep this
