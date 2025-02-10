@@ -60,6 +60,11 @@ void handle_init_contract(ethPluginInitContract_t *msg) {
             strlcpy(context->ticker, "MATIC", sizeof(context->ticker));
             break;
 
+        case ETH_MATICX_SUBMIT_POL:
+            context->next_param = STAKE_AMOUNT;
+            strlcpy(context->ticker, "POL", sizeof(context->ticker));
+            break;
+
         case POLYGON_CHILDPOOL_SWAP_MATIC_FOR_MATICX_VIA_INSTANT_POOL:
             context->next_param = UNEXPECTED_PARAMETER;
             break;

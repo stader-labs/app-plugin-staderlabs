@@ -151,6 +151,10 @@ void handle_provide_parameter(ethPluginProvideParameter_t *msg) {
             handle_stake(msg, context);
             break;
 
+        case ETH_MATICX_SUBMIT_POL:
+            handle_stake(msg, context);
+            break;
+
         case BSC_STAKEMANAGER_REQUEST_WITHDRAW:
         case ETH_MATICX_REQUEST_WITHDRAW:
         case POLYGON_CHILDPOOL_REQUEST_MATICX_SWAP:

@@ -27,6 +27,7 @@
 //     - a map named SELECTORS associating each NAME with it's value
 #define SELECTORS_LIST(X)                                                   \
     X(ETH_MATICX_SUBMIT, 0xea99c2a6)                                        \
+    X(ETH_MATICX_SUBMIT_POL, 0x1564da79)                                    \
     X(ETH_MATICX_REQUEST_WITHDRAW, 0x745400c9)                              \
     X(ETH_MATICX_CLAIM_WITHDRAWAL, 0xf8444436)                              \
     X(POLYGON_CHILDPOOL_SWAP_MATIC_FOR_MATICX_VIA_INSTANT_POOL, 0xc78cf1a0) \

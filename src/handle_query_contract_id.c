@@ -14,6 +14,7 @@ void handle_query_contract_id(ethQueryContractID_t *msg) {
     switch (context->selectorIndex) {
         case ETHX_DEPOSIT:
         case ETH_MATICX_SUBMIT:
+        case ETH_MATICX_SUBMIT_POL:
         case POLYGON_CHILDPOOL_SWAP_MATIC_FOR_MATICX_VIA_INSTANT_POOL:
         case BSC_STAKEMANAGER_DEPOSIT:
             msgVersion = "Stake";
